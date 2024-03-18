@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : System.Windows.Forms.Form
+    public partial class FormSearch : System.Windows.Forms.Form
     {
-        public Form1()
+        public FormSearch()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
