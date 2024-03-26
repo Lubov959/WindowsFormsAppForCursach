@@ -42,7 +42,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewShop = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSections = new System.Windows.Forms.DataGridView();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxGroups = new System.Windows.Forms.ToolStripTextBox();
@@ -67,7 +67,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSections)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.statusStrip1);
-            this.panel1.Controls.Add(this.dataGridViewShop);
+            this.panel1.Controls.Add(this.dataGridViewSections);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -111,9 +111,10 @@
             this.buttonClear.Location = new System.Drawing.Point(167, 157);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(125, 27);
-            this.buttonClear.TabIndex = 24;
+            this.buttonClear.TabIndex = 5;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // comboBoxNameS
             // 
@@ -121,7 +122,7 @@
             this.comboBoxNameS.Location = new System.Drawing.Point(163, 20);
             this.comboBoxNameS.Name = "comboBoxNameS";
             this.comboBoxNameS.Size = new System.Drawing.Size(286, 21);
-            this.comboBoxNameS.TabIndex = 23;
+            this.comboBoxNameS.TabIndex = 1;
             // 
             // buttonDelete
             // 
@@ -132,9 +133,10 @@
             this.buttonDelete.Location = new System.Drawing.Point(16, 157);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(119, 27);
-            this.buttonDelete.TabIndex = 22;
+            this.buttonDelete.TabIndex = 6;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonSave
             // 
@@ -145,9 +147,10 @@
             this.buttonSave.Location = new System.Drawing.Point(324, 157);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(125, 27);
-            this.buttonSave.TabIndex = 22;
+            this.buttonSave.TabIndex = 4;
             this.buttonSave.Text = "Записать";
             this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // numericUpDownPrice
             // 
@@ -171,7 +174,7 @@
             0});
             this.numericUpDownPrice.Name = "numericUpDownPrice";
             this.numericUpDownPrice.Size = new System.Drawing.Size(158, 22);
-            this.numericUpDownPrice.TabIndex = 15;
+            this.numericUpDownPrice.TabIndex = 3;
             this.numericUpDownPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDownPrice.Value = new decimal(new int[] {
             1000,
@@ -185,7 +188,7 @@
             this.textBoxTrener.Location = new System.Drawing.Point(163, 62);
             this.textBoxTrener.Name = "textBoxTrener";
             this.textBoxTrener.Size = new System.Drawing.Size(286, 22);
-            this.textBoxTrener.TabIndex = 13;
+            this.textBoxTrener.TabIndex = 2;
             this.textBoxTrener.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -243,20 +246,20 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(13, 17);
             this.toolStripStatusLabel2.Text = "0";
             // 
-            // dataGridViewShop
+            // dataGridViewSections
             // 
-            this.dataGridViewShop.AllowUserToAddRows = false;
-            this.dataGridViewShop.AllowUserToDeleteRows = false;
-            this.dataGridViewShop.AllowUserToResizeRows = false;
-            this.dataGridViewShop.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewShop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewShop.Location = new System.Drawing.Point(16, 34);
-            this.dataGridViewShop.MaximumSize = new System.Drawing.Size(380, 300);
-            this.dataGridViewShop.MinimumSize = new System.Drawing.Size(465, 200);
-            this.dataGridViewShop.Name = "dataGridViewShop";
-            this.dataGridViewShop.RowHeadersVisible = false;
-            this.dataGridViewShop.Size = new System.Drawing.Size(465, 200);
-            this.dataGridViewShop.TabIndex = 22;
+            this.dataGridViewSections.AllowUserToAddRows = false;
+            this.dataGridViewSections.AllowUserToDeleteRows = false;
+            this.dataGridViewSections.AllowUserToResizeRows = false;
+            this.dataGridViewSections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewSections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSections.Location = new System.Drawing.Point(16, 34);
+            this.dataGridViewSections.MaximumSize = new System.Drawing.Size(380, 300);
+            this.dataGridViewSections.MinimumSize = new System.Drawing.Size(465, 200);
+            this.dataGridViewSections.Name = "dataGridViewSections";
+            this.dataGridViewSections.RowHeadersVisible = false;
+            this.dataGridViewSections.Size = new System.Drawing.Size(465, 200);
+            this.dataGridViewSections.TabIndex = 22;
             // 
             // toolStripMenuItem1
             // 
@@ -283,6 +286,7 @@
             this.toolStripTextBoxGroups.Name = "toolStripTextBoxGroups";
             this.toolStripTextBoxGroups.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxGroups.Text = "Группы";
+            this.toolStripTextBoxGroups.Click += new System.EventHandler(this.toolStripTextBoxGroups_Click);
             // 
             // toolStripSeparator1
             // 
@@ -295,6 +299,7 @@
             this.toolStripTextBoxKids.Name = "toolStripTextBoxKids";
             this.toolStripTextBoxKids.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxKids.Text = "Занимающиеся";
+            this.toolStripTextBoxKids.Click += new System.EventHandler(this.toolStripTextBoxKids_Click);
             // 
             // menuStrip1
             // 
@@ -334,7 +339,7 @@
             this.toolStripTextBoxS_SurnKid});
             this.toolStripMenuItem4.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem4.Text = "Секции по...";
             // 
             // toolStripTextBoxS_Tr
@@ -373,7 +378,7 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(138, 6);
             // 
             // toolStripMenuItem2
             // 
@@ -385,7 +390,7 @@
             this.toolStripTextBoxG_LS});
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem2.Text = "Группы по...";
             // 
             // toolStripTextBoxG_NS
@@ -432,6 +437,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormSections";
             this.Text = "Секции";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSections_FormClosed);
+            this.Load += new System.EventHandler(this.FormSections_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -439,7 +446,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPrice)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSections)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -450,7 +457,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridViewShop;
+        private System.Windows.Forms.DataGridView dataGridViewSections;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;

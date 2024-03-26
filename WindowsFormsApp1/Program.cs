@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryForBinFile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,9 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Sections S = new Sections("Sections");
+            Groups G = new Groups("Groups");
+            Kids K = new Kids("Kids");
             Application.Run(new FormSections());
         }
     }

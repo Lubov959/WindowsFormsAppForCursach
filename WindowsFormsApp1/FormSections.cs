@@ -5,30 +5,18 @@ using ClassLibraryForBinFile;
 
 namespace WindowsFormsApp1
 {
-    public partial class FormSections : System.Windows.Forms.Form
+    public partial class FormSections : Form
     {
-        private string fn = "Sections";// имя файла
-
-        //enum Col : byte
-        //{//перечисление для выбора колонки поиска
-        //    Название,
-        //    Количество,
-        //    Цена,
-        //    Стоимость
-        //}
-
         public FormSections()
         {
             InitializeComponent();
-
-            //выбор колонки
-
-            //comboBoxNameCol.Items.AddRange(new object[] { (Col)0, (Col)1, (Col)2, (Col)3 });
-            ////ограничение длины вводимых величин
-            //textBoxName.MaxLength = 15;
-            //textBoxSearch.MaxLength = 20;
-            //textBoxTrener.MaxLength = 20;
-            //textBoxTrener.MaxLength = 8;//макс для целого положительного
+            //ограничение длинны
+            comboBoxNameS.MaxLength = 15;
+            textBoxTrener.MaxLength = 20;
+        }
+        private void FormSections_Load(object sender, EventArgs e)
+        {
+            UpDate();//вывод файла
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -36,21 +24,15 @@ namespace WindowsFormsApp1
         {
             try
             {
-                //File_path();//проверка не путь
-                Sections N = new Sections(); // новая запись
+                Sections S = new Sections(); // новая запись
                 // прочтём данные, вводимые пользователем
-                //N.Стоимость = Convert.ToDouble(numericUpDownPrice.Value);
-                //N.Название = Convert.ToString(textBoxName.Text);
-                //N.Тренер = Convert.ToString(textBoxTrener.Text);
+                S.Название = comboBoxNameS.Text;
+                S.Тренер = textBoxTrener.Text;
+                S.Стоимость= Convert.ToDouble(numericUpDownPrice.Value);
 
-                long p = N.Check(fn);//проверка
+                long p = S.Check();//проверка
                 if (p < 0)//если такой записи нет, то записываем в конец
-                {
-                    N.Add(fn);
-                    DialogResult res = MessageBox.Show("Запись успешно добавлена в файл", "Сохранение",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
+                { S.Add();}
                 else
                 {
                     DialogResult res = MessageBox.Show("Такая дата уже есть в файле! Изменить данные? ", "Предупреждение",
@@ -58,13 +40,9 @@ namespace WindowsFormsApp1
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button2);
                     if (res == DialogResult.Yes)
-                    {
-                        N.Correcting(fn, p);
-                        DialogResult res1 = MessageBox.Show("Запись в файле успешно изменена", "Изменение",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    }
+                    {S.Correcting(p);}
                 }
+                UpDate();
             }
             catch (Exception ex)
             {
@@ -87,17 +65,37 @@ namespace WindowsFormsApp1
         //    }
         //}
 
-        // метод нажатия на кнопку "Чтение данных"
-        private void buttonPrint_Click(object sender, EventArgs e)
+        //обновление данных в форме относительно файла
+        private void UpDate()
         {
             try
             {
                 //File_path();//проверка на существование пути к файлу
-                Sections.Vyvod(fn, out List<Sections> sections);
+                Sections.Vyvod(out List<Sections> sections);
                 if (sections == null) { throw new Exception("Файл пуст!"); }
-                //Form2 about = new Form2(fn, sections);
-                //about.StartPosition = FormStartPosition.CenterParent;
-                //about.ShowDialog();
+                else
+                { 
+                    // настройка вида таблицы
+                    dataGridViewSections.ColumnCount = 3;
+                    dataGridViewSections.Columns[0].Name = "Название секции";
+                    dataGridViewSections.Columns[1].Name = "Фамилия тренера";
+                    dataGridViewSections.Columns[2].Name = "Стоимость, руб";
+                    //очистка списка названий секций
+                    comboBoxNameS.Items.Clear();
+
+                    int k = sections.Count;
+                    dataGridViewSections.RowCount = k;
+                    // цикл для вывода данных из массива в таблицу на форме
+                    for (int i = 0; i < sections.Count; i++)
+                    {
+                        comboBoxNameS.Items.Add(sections[i].Название);
+                        dataGridViewSections.Rows[i].Cells[0].Value = sections[i].Название;
+                        dataGridViewSections.Rows[i].Cells[1].Value = sections[i].Тренер;
+                        dataGridViewSections.Rows[i].Cells[2].Value = sections[i].Стоимость;
+                    }
+                     //кол-во строк
+                    statusStrip1.Items[1].Text = sections.Count.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -110,26 +108,9 @@ namespace WindowsFormsApp1
         //метод нажатия на кнопку Найти
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            string n = comboBoxNameCol.Text;//колонка
+            string n = comboBoxNameS.Text;//колонка
             try
             {
-                //File_path();//проверка на существование пути к файлу
-                //если пользователь выбрал поиск по Названию,
-                //то выводится информация сразу в поле для редактирования
-                //if (n == ((Col)0).ToString())
-                //{
-                //    string z = textBoxSearch.Text;//занчение поиска
-                //    Product.Search(fn, z, out Product rez);
-
-                //    textBoxName.Text = rez.Название;
-                //    textBoxCost.Text = rez.Стоимость.ToString();
-                //    textBoxPrice.Text = rez.Цена.ToString();
-                //    textBoxTrener.Text = rez.Количество.ToString();
-                //}
-                //else//Обычныый поиск
-                //{
-                //    object z = textBoxSearch.Text;//значение поиска
-                //    Product.Search(fn, n, z, out List<Product> rez);
                 //    //вывод результатов в форму 2
                 //    Form2 about = new Form2(fn, rez);
                 //    about.StartPosition = FormStartPosition.CenterParent;
@@ -162,6 +143,77 @@ namespace WindowsFormsApp1
             char number = e.KeyChar;
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8)
             { e.Handled = true; }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            comboBoxNameS.Text = string.Empty;
+            textBoxTrener.Text = string.Empty;
+            numericUpDownPrice.Value = numericUpDownPrice.Minimum;
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Sections S = new Sections(); // новая запись
+                // прочтём данные, вводимые пользователем
+                S.Название = comboBoxNameS.Text;
+
+                long p = S.Check();//проверка
+                if (p < 0)//если такой записи нет, то записываем в конец
+                {
+                    DialogResult res = MessageBox.Show("Такой секции нет", "Ошибка удаления",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    DialogResult res = MessageBox.Show($"Секция {S.Название} будет удалена.\n Вы уверены?", "Предупреждение",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Exclamation,
+                       MessageBoxDefaultButton.Button2);
+                    if (res == DialogResult.Yes)
+                    {S.Delete(p);}
+                }
+                UpDate();
+            }
+            catch (Exception ex)
+            {
+                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
+        {
+            FormGroups ifrm = new FormGroups();
+            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
+            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.Show(); // отображаем новую форму
+            this.Hide(); // скрываем текущую
+        }
+
+        private void FormSections_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count > 0)
+            {
+                // вызываем главную форму, которая открыла текущую, главная форма всегда = 0 - [0]
+                Form ifrm = Application.OpenForms[0];
+                ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
+                ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+                ifrm.Show(); // отображаем главную форму
+            }
+        }
+
+        private void toolStripTextBoxKids_Click(object sender, EventArgs e)
+        {
+            FormGroups ifrm = new FormGroups();
+            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
+            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.Show(); // отображаем новую форму
+            this.Hide(); // скрываем текущую
         }
     }
 }

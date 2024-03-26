@@ -70,12 +70,12 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewShop = new System.Windows.Forms.DataGridView();
+            this.dataGridViewGroups = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,7 +85,7 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.statusStrip1);
-            this.panel1.Controls.Add(this.dataGridViewShop);
+            this.panel1.Controls.Add(this.dataGridViewGroups);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -168,7 +168,7 @@
             this.toolStripTextBoxS_SurnKid});
             this.toolStripMenuItem4.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem4.Text = "Секции по...";
             // 
             // toolStripTextBoxS_Tr
@@ -207,7 +207,7 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(138, 6);
             // 
             // toolStripMenuItem2
             // 
@@ -219,7 +219,7 @@
             this.toolStripTextBoxG_LS});
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem2.Text = "Группы по...";
             // 
             // toolStripTextBoxG_NS
@@ -496,20 +496,20 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(13, 17);
             this.toolStripStatusLabel2.Text = "0";
             // 
-            // dataGridViewShop
+            // dataGridViewGroups
             // 
-            this.dataGridViewShop.AllowUserToAddRows = false;
-            this.dataGridViewShop.AllowUserToDeleteRows = false;
-            this.dataGridViewShop.AllowUserToResizeRows = false;
-            this.dataGridViewShop.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewShop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewShop.Location = new System.Drawing.Point(16, 34);
-            this.dataGridViewShop.MaximumSize = new System.Drawing.Size(380, 300);
-            this.dataGridViewShop.MinimumSize = new System.Drawing.Size(465, 200);
-            this.dataGridViewShop.Name = "dataGridViewShop";
-            this.dataGridViewShop.RowHeadersVisible = false;
-            this.dataGridViewShop.Size = new System.Drawing.Size(465, 200);
-            this.dataGridViewShop.TabIndex = 22;
+            this.dataGridViewGroups.AllowUserToAddRows = false;
+            this.dataGridViewGroups.AllowUserToDeleteRows = false;
+            this.dataGridViewGroups.AllowUserToResizeRows = false;
+            this.dataGridViewGroups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewGroups.Location = new System.Drawing.Point(16, 34);
+            this.dataGridViewGroups.MaximumSize = new System.Drawing.Size(380, 300);
+            this.dataGridViewGroups.MinimumSize = new System.Drawing.Size(465, 200);
+            this.dataGridViewGroups.Name = "dataGridViewGroups";
+            this.dataGridViewGroups.RowHeadersVisible = false;
+            this.dataGridViewGroups.Size = new System.Drawing.Size(465, 200);
+            this.dataGridViewGroups.TabIndex = 22;
             // 
             // FormGroups
             // 
@@ -528,7 +528,7 @@
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGroups)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -547,7 +547,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.DataGridView dataGridViewShop;
+        private System.Windows.Forms.DataGridView dataGridViewGroups;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSections;
