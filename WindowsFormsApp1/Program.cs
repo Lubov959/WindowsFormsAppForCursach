@@ -17,9 +17,9 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Sections S = new Sections("Sections");
-            Groups G = new Groups("Groups");
-            Kids K = new Kids("Kids");
+            Sections.Path("Sections");
+            Groups.Path("Groups");
+            Kids.Path("Kids2");
             Application.Run(new FormSections());
         }
     }

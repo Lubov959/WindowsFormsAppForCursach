@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ClassLibraryForBinFile;
 
 namespace WindowsFormsApp1
@@ -24,23 +25,27 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Sections S = new Sections(); // новая запись
-                // прочтём данные, вводимые пользователем
-                S.Название = comboBoxNameS.Text;
-                S.Тренер = textBoxTrener.Text;
-                S.Стоимость= Convert.ToDouble(numericUpDownPrice.Value);
-
-                long p = S.Check();//проверка
-                if (p < 0)//если такой записи нет, то записываем в конец
-                { S.Add();}
-                else
+                if((comboBoxNameS.Text == string.Empty)||(textBoxTrener.Text==string.Empty) )
+                    throw new Exception("Поля записи не должны быть пустыми!");
                 {
-                    DialogResult res = MessageBox.Show("Такая дата уже есть в файле! Изменить данные? ", "Предупреждение",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button2);
-                    if (res == DialogResult.Yes)
-                    {S.Correcting(p);}
+                    Sections S = new Sections(); // новая запись
+                                                 // прочтём данные, вводимые пользователем
+                    S.Название = comboBoxNameS.Text;
+                    S.Тренер = textBoxTrener.Text;
+                    S.Стоимость = Convert.ToDouble(numericUpDownPrice.Value);
+
+                    long p = Sections.Check(comboBoxNameS.Text);//проверка
+                    if (p < 0)//если такой записи нет, то записываем в конец
+                    { S.Add(); }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("Такая секция уже есть! \nИзменить данные? ", "Предупреждение",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button2);
+                        if (res == DialogResult.Yes)
+                        { S.Correcting(p); }
+                    }
                 }
                 UpDate();
             }
@@ -72,7 +77,7 @@ namespace WindowsFormsApp1
             {
                 //File_path();//проверка на существование пути к файлу
                 Sections.Vyvod(out List<Sections> sections);
-                if (sections == null) { throw new Exception("Файл пуст!"); }
+                if (sections == null) { statusStrip1.Items[1].Text = "0"; }
                 else
                 { 
                     // настройка вида таблицы
@@ -152,31 +157,61 @@ namespace WindowsFormsApp1
             numericUpDownPrice.Value = numericUpDownPrice.Minimum;
         }
 
+        //метод при нажатии на кнопку Удалить
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             try
             {
-                Sections S = new Sections(); // новая запись
-                // прочтём данные, вводимые пользователем
-                S.Название = comboBoxNameS.Text;
-
-                long p = S.Check();//проверка
-                if (p < 0)//если такой записи нет, то записываем в конец
-                {
-                    DialogResult res = MessageBox.Show("Такой секции нет", "Ошибка удаления",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                if (comboBoxNameS.Text == string.Empty)
+                    throw new Exception("Для удаления записи необходимо нзвание секции!");
                 else
                 {
-                    DialogResult res = MessageBox.Show($"Секция {S.Название} будет удалена.\n Вы уверены?", "Предупреждение",
-                       MessageBoxButtons.YesNo,
-                       MessageBoxIcon.Exclamation,
-                       MessageBoxDefaultButton.Button2);
-                    if (res == DialogResult.Yes)
-                    {S.Delete(p);}
+                    long p = Sections.Check(comboBoxNameS.Text);//проверка
+                    if (p < 0)//если такой записи нет, то записываем в конец
+                    {
+                        DialogResult res = MessageBox.Show("Такой секции нет", "Ошибка удаления",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {//проверка на связные записи
+                        Sections.CheckKidsAndGroups(comboBoxNameS.Text, out List<long> groups_pos,
+                            out List<long> kids_pos);
+                        if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
+                        {
+                            DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
+                                $"связанные с ней записи" +
+                                $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
+                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button2);
+                            if (res == DialogResult.Yes)
+                            {
+                                Groups.Delete(p);
+                                foreach (long gr in groups_pos)
+                                    Groups.Delete(gr);
+                                foreach (long kid in groups_pos)
+                                    Kids.Delete(kid);
+                            }
+                        }
+                        else
+                        {
+                            DialogResult res = MessageBox.Show($"Секция {comboBoxNameS.Text} будет удалена." +
+                                $"\n Вы уверены?", "Предупреждение",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button2);
+                            if (res == DialogResult.Yes)
+                            {
+                                Groups.Delete(p);
+                                foreach (long kid in groups_pos)
+                                    Kids.Delete(kid);
+                            }
+                        }
+                    }
+                    UpDate();
                 }
-                UpDate();
             }
             catch (Exception ex)
             {
@@ -209,7 +244,7 @@ namespace WindowsFormsApp1
 
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
-            FormGroups ifrm = new FormGroups();
+            FormKids ifrm = new FormKids();
             ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
             ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
             ifrm.Show(); // отображаем новую форму

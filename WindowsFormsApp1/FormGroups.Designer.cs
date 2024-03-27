@@ -124,7 +124,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripTextBoxSections
             // 
@@ -132,11 +132,12 @@
             this.toolStripTextBoxSections.Name = "toolStripTextBoxSections";
             this.toolStripTextBoxSections.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxSections.Text = "Секции";
+            this.toolStripTextBoxSections.Click += new System.EventHandler(this.toolStripTextBoxSections_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripTextBoxKids
             // 
@@ -144,6 +145,7 @@
             this.toolStripTextBoxKids.Name = "toolStripTextBoxKids";
             this.toolStripTextBoxKids.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxKids.Text = "Занимающиеся";
+            this.toolStripTextBoxKids.Click += new System.EventHandler(this.toolStripTextBoxKids_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -406,6 +408,7 @@
             this.buttonClear.TabIndex = 24;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = false;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // comboBoxNameG
             // 
@@ -427,6 +430,7 @@
             this.buttonDelete.TabIndex = 22;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonSave
             // 
@@ -440,6 +444,7 @@
             this.buttonSave.TabIndex = 22;
             this.buttonSave.Text = "Записать";
             this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // label3
             // 
@@ -520,6 +525,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormGroups";
             this.Text = "Группы";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGroups_FormClosed);
+            this.Load += new System.EventHandler(this.FormGroups_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
