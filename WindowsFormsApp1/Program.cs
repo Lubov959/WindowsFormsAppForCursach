@@ -17,9 +17,18 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Sections.Path("Sections");
-            Groups.Path("Groups");
-            Kids.Path("Kids2");
+            try
+            {
+                Sections.Path("Sections");
+                Groups.Path("Groups");
+                Kids.Path("Kids");
+            }
+            catch (Exception ex)
+            {
+                DialogResult res = MessageBox.Show(ex.Message, "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
             Application.Run(new FormSections());
         }
     }

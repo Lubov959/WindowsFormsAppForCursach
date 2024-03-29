@@ -32,13 +32,13 @@ namespace WindowsFormsApp1
             //ограничение длинны
             comboBoxNameG.MaxLength = 20;
             //начальные параметры
-            checkBox1.Checked = true;
             comboBoxLevel.Items.AddRange(new object[] { (lev)0, (lev)1, (lev)2, (lev)3, (lev)4 });
             try
             {
                 Sections.Vyvod(out List<Sections> sections);
                 if (sections != null) 
                 {
+                    comboBoxSection.Items.Add(string.Empty);
                     for (int i = 0; i < sections.Count; i++)
                         comboBoxSection.Items.Add(sections[i].Название);
                 }
@@ -215,9 +215,9 @@ namespace WindowsFormsApp1
         private void buttonClear_Click(object sender, EventArgs e)
         {
             comboBoxNameG.Text = string.Empty;
-            comboBoxSection.Text = string.Empty;
+            comboBoxSection.Text = comboBoxSection.Items[0].ToString();
             comboBoxLevel.Text = string.Empty;
-            checkBox1.Checked = true;
+            checkBox1.Checked = false;
             checkBox2.Checked = false;
             checkBox3.Checked = false;
             checkBox4.Checked = false;
@@ -295,30 +295,22 @@ namespace WindowsFormsApp1
 
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
-            FormSections ifrm = new FormSections();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            Form ifrm = Application.OpenForms[0];
+            ifrm.StartPosition = FormStartPosition.CenterScreen; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
 
         private void FormGroups_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Application.OpenForms.Count > 0)
-            {
-                // вызываем главную форму, которая открыла текущую, главная форма всегда = 0 - [0]
-                Form ifrm = Application.OpenForms[0];
-                ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-                ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
-                ifrm.Show(); // отображаем главную форму
-            }
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
         }
 
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.StartPosition = FormStartPosition.CenterScreen; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }

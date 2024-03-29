@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using ClassLibraryForBinFile;
@@ -11,6 +12,7 @@ namespace WindowsFormsApp1
         public FormSections()
         {
             InitializeComponent();
+            this.StartPosition= FormStartPosition.CenterScreen;
             //ограничение длинны
             comboBoxNameS.MaxLength = 15;
             textBoxTrener.MaxLength = 20;
@@ -224,29 +226,15 @@ namespace WindowsFormsApp1
         private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
         {
             FormGroups ifrm = new FormGroups();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.StartPosition = FormStartPosition.CenterParent;
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
-        }
-
-        private void FormSections_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count > 0)
-            {
-                // вызываем главную форму, которая открыла текущую, главная форма всегда = 0 - [0]
-                Form ifrm = Application.OpenForms[0];
-                ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-                ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
-                ifrm.Show(); // отображаем главную форму
-            }
         }
 
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.StartPosition = FormStartPosition.CenterParent; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }

@@ -437,7 +437,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormSections";
             this.Text = "Секции";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSections_FormClosed);
             this.Load += new System.EventHandler(this.FormSections_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
                 Groups.Vyvod(out List<Groups> groups);
                 if (groups != null) 
                 {
+                    comboBoxGroup.Items.Add(string.Empty);
                     for (int i = 0; i < groups.Count; i++)
                         comboBoxGroup.Items.Add(groups[i].Название);
                 }
@@ -71,7 +72,7 @@ namespace WindowsFormsApp1
                         if (res == DialogResult.Yes)
                         { K.Correcting(p); }
                     }
-                    UpDate();
+                    UpDate(); 
                 }
             }
             catch (Exception ex)
@@ -106,23 +107,31 @@ namespace WindowsFormsApp1
                 {
                     // настройка вида таблицы
                     dataGridViewKids.ColumnCount = 4;
-                    dataGridViewKids.Columns[0].Name = "Имя";
-                    dataGridViewKids.Columns[1].Name = "Фамилия";
+                    dataGridViewKids.Columns[0].Name = "Фамилия";
+                    dataGridViewKids.Columns[1].Name = "Имя";
                     dataGridViewKids.Columns[2].Name = "Отчество";
                     dataGridViewKids.Columns[3].Name = "Группа";
                     //очистка списка 
                     comboBoxName.Items.Clear();
                     comboBoxSurname.Items.Clear();
 
+                    
                     int k = kids.Count;
                     dataGridViewKids.RowCount = k;
                     // цикл для вывода данных из массива в таблицу на форме
                     for (int i = 0; i < kids.Count; i++)
                     {
-                        comboBoxName.Items.Add(kids[i].Имя);
-                        comboBoxSurname.Items.Add(kids[i].Фамилия);
-                        dataGridViewKids.Rows[i].Cells[0].Value = kids[i].Имя;
-                        dataGridViewKids.Rows[i].Cells[1].Value = kids[i].Фамилия;
+                        byte d = 1;//проверка на дубли в списке фамилий
+                        foreach(var item in comboBoxSurname.Items)
+                        {
+                            if (item.ToString() != kids[i].Фамилия)
+                                d++;
+                            else { d = 0; break; }
+                        }
+                        if (d!=0)
+                            comboBoxSurname.Items.Add(kids[i].Фамилия);
+                        dataGridViewKids.Rows[i].Cells[0].Value = kids[i].Фамилия;
+                        dataGridViewKids.Rows[i].Cells[1].Value = kids[i].Имя;
                         dataGridViewKids.Rows[i].Cells[2].Value = kids[i].Отчество;
                         dataGridViewKids.Rows[i].Cells[3].Value = kids[i].Группа;
                     }
@@ -177,29 +186,24 @@ namespace WindowsFormsApp1
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8)
             { e.Handled = true; }
         }
-
+        //очистка полей
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            comboBoxName.Text = string.Empty;
+            comboBoxName.Items.Clear();
             textBoxPatronymic.Text = string.Empty;
-            comboBoxGroup.Text = string.Empty;
+            comboBoxGroup.Text = comboBoxGroup.Items[0].ToString();
             comboBoxSurname.Text = string.Empty;
         }
-
+        //удаление
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             try
             {
                 //проверка на пустоту полей
-                if ((comboBoxName.Text == string.Empty) || (comboBoxSurname.Text == string.Empty))
-                    throw new Exception("Для удаления записи необходима фамилия занимающегося!");
-                else
+                if ((comboBoxName.Text == string.Empty) && (comboBoxSurname.Text == string.Empty))
+                    throw new Exception("Для удаления записи необходимы фамилия и имя занимающегося!");
+                else 
                 {
-                    Kids K = new Kids(); // новая запись
-                                         // прочтём данные, вводимые пользователем
-                    K.Имя = comboBoxName.Text;
-                    K.Фамилия = comboBoxSurname.Text;
-
                     long p = Kids.Check(comboBoxName.Text, comboBoxSurname.Text);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     {
@@ -209,10 +213,11 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
-                        DialogResult res = MessageBox.Show($"Человек {K.Фамилия} {K.Имя} будет удален.\n Вы уверены?", "Предупреждение",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Exclamation,
-                           MessageBoxDefaultButton.Button2);
+                        DialogResult res = MessageBox.Show($"Человек {comboBoxSurname.Text} " +
+                            $"{comboBoxName.Text} будет удален.\n Вы уверены?", "Предупреждение",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button2);
                         if (res == DialogResult.Yes)
                         { Kids.Delete(p); }
                     }
@@ -227,34 +232,44 @@ namespace WindowsFormsApp1
             }
         }
 
+        //передвижение между формами
         private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
         {
             FormGroups ifrm = new FormGroups();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            ifrm.StartPosition = FormStartPosition.CenterScreen; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
+        //закрытие
         private void FormKids_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Application.OpenForms.Count > 0)
-            {
-                // вызываем главную форму, которая открыла текущую, главная форма всегда = 0 - [0]
-                Form ifrm = Application.OpenForms[0];
-                ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-                ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
-                ifrm.Show(); // отображаем главную форму
-            }
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
         }
 
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
-            FormSections ifrm = new FormSections();
-            ifrm.Left = this.Left; // задаём открываемой форме позицию слева равную позиции текущей формы
-            ifrm.Top = this.Top; // задаём открываемой форме позицию сверху равную позиции текущей формы
+            Form ifrm = Application.OpenForms[0];
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
+        }
+
+//метод происходит после заполнения Фамилии
+//если дети с такой фамилией есть он их записывает в поле Имя
+        private void comboBoxSurname_Leave(object sender, EventArgs e)
+        {
+            if (comboBoxSurname.Text != string.Empty)
+            {
+                List<string> list = Kids.Check(comboBoxSurname.Text);
+                if (list.Count > 1)
+                {
+                    comboBoxName.Items.Clear();
+                    foreach (string s in list) { comboBoxName.Items.Add(s); }
+                }
+                else if (list.Count == 1)
+                    comboBoxName.Text = list[0];
+            }
         }
     }
 }

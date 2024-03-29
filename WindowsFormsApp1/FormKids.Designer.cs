@@ -284,16 +284,17 @@
             // comboBoxSurname
             // 
             this.comboBoxSurname.FormattingEnabled = true;
-            this.comboBoxSurname.Location = new System.Drawing.Point(163, 62);
+            this.comboBoxSurname.Location = new System.Drawing.Point(163, 21);
             this.comboBoxSurname.Name = "comboBoxSurname";
             this.comboBoxSurname.Size = new System.Drawing.Size(286, 21);
             this.comboBoxSurname.TabIndex = 26;
+            this.comboBoxSurname.Leave += new System.EventHandler(this.comboBoxSurname_Leave);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 64);
+            this.label2.Location = new System.Drawing.Point(12, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 19);
             this.label2.TabIndex = 25;
@@ -316,7 +317,7 @@
             // comboBoxName
             // 
             this.comboBoxName.FormattingEnabled = true;
-            this.comboBoxName.Location = new System.Drawing.Point(163, 20);
+            this.comboBoxName.Location = new System.Drawing.Point(163, 64);
             this.comboBoxName.Name = "comboBoxName";
             this.comboBoxName.Size = new System.Drawing.Size(286, 21);
             this.comboBoxName.TabIndex = 23;
@@ -382,7 +383,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 22);
+            this.label5.Location = new System.Drawing.Point(12, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 19);
             this.label5.TabIndex = 8;
