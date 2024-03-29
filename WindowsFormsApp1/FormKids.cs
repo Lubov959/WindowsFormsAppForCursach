@@ -1,12 +1,6 @@
 ﻿using ClassLibraryForBinFile;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -42,8 +36,8 @@ namespace WindowsFormsApp1
             UpDate();//вывод файла
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
         // метод нажатия на кнопку "Cохранить данные в файл"
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -82,19 +76,6 @@ namespace WindowsFormsApp1
                             MessageBoxIcon.Error);
             }
         }
-
-        //метод проверки на существование пути к файлу
-        //private void File_path()
-        //{
-        //    if (fn == string.Empty)//для выбора файла для записи
-        //    {
-        //        // отобразить диалог Открыть
-        //        if (openFileDialog1.ShowDialog() == DialogResult.OK)
-        //            fn = openFileDialog1.FileName;
-        //        else
-        //        { throw new Exception("Пустое имя пути не допускается"); }
-        //    }
-        //}
 
         //обновление данных в форме относительно файла
         private void UpDate()
@@ -147,45 +128,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        //метод нажатия на кнопку Найти
-        private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            string n = comboBoxName.Text;//колонка
-            try
-            {
-                //    //вывод результатов в форму 2
-                //    Form2 about = new Form2(fn, rez);
-                //    about.StartPosition = FormStartPosition.CenterParent;
-                //    about.ShowDialog();
-                //}
-            }
-            catch (Exception ex)
-            {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-            }
-        }
-
-        //ограничения ввода для числовых полей
-        private void TextBoxNumder_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Разрешает вводить только цифры от 0 до 10 и BackSpase и ,
-            char number = e.KeyChar;
-            TextBox textBox = (sender as TextBox);
-            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8 && number != 44)
-            { e.Handled = true; }
-            if (textBox.Text.Contains(",") && e.KeyChar == ',') //Запрет нескольких запятых
-                e.Handled = true;
-        }
-        //для Количества только цифры
-        private void TextBoxQuantity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Разрешает вводить только цифры от 0 до 10 и BackSpase 
-            char number = e.KeyChar;
-            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8)
-            { e.Handled = true; }
-        }
         //очистка полей
         private void buttonClear_Click(object sender, EventArgs e)
         {
@@ -240,13 +182,15 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
+        
         //закрытие
         private void FormKids_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
             ifrm.Close();
         }
-
+        
+        //передвижение между формами
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
@@ -255,8 +199,8 @@ namespace WindowsFormsApp1
             this.Hide(); // скрываем текущую
         }
 
-//метод происходит после заполнения Фамилии
-//если дети с такой фамилией есть он их записывает в поле Имя
+        //метод происходит после заполнения Фамилии
+        //если дети с такой фамилией есть он их записывает в поле Имя
         private void comboBoxSurname_Leave(object sender, EventArgs e)
         {
             if (comboBoxSurname.Text != string.Empty)

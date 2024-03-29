@@ -1,14 +1,7 @@
 ﻿using ClassLibraryForBinFile;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace WindowsFormsApp1
 {
@@ -57,8 +50,9 @@ namespace WindowsFormsApp1
             UpDate();//вывод файла
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
         // метод нажатия на кнопку "Cохранить данные в файл"
+        private void buttonSave_Click(object sender, EventArgs e)
+        
         {
             try
             {
@@ -111,19 +105,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        //метод проверки на существование пути к файлу
-        //private void File_path()
-        //{
-        //    if (fn == string.Empty)//для выбора файла для записи
-        //    {
-        //        // отобразить диалог Открыть
-        //        if (openFileDialog1.ShowDialog() == DialogResult.OK)
-        //            fn = openFileDialog1.FileName;
-        //        else
-        //        { throw new Exception("Пустое имя пути не допускается"); }
-        //    }
-        //}
-
         //обновление данных в форме относительно файла
         private void UpDate()
         {
@@ -171,46 +152,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        //метод нажатия на кнопку Найти
-        private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            string n = comboBoxNameG.Text;//колонка
-            try
-            {
-                //    //вывод результатов в форму 2
-                //    Form2 about = new Form2(fn, rez);
-                //    about.StartPosition = FormStartPosition.CenterParent;
-                //    about.ShowDialog();
-                //}
-            }
-            catch (Exception ex)
-            {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-            }
-        }
-
-        //ограничения ввода для числовых полей
-        private void TextBoxNumder_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Разрешает вводить только цифры от 0 до 10 и BackSpase и ,
-            char number = e.KeyChar;
-            TextBox textBox = (sender as TextBox);
-            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8 && number != 44)
-            { e.Handled = true; }
-            if (textBox.Text.Contains(",") && e.KeyChar == ',') //Запрет нескольких запятых
-                e.Handled = true;
-        }
-        //для Количества только цифры
-        private void TextBoxQuantity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Разрешает вводить только цифры от 0 до 10 и BackSpase 
-            char number = e.KeyChar;
-            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8)
-            { e.Handled = true; }
-        }
-
         //нажатие на кнопку очистки полей записи
         private void buttonClear_Click(object sender, EventArgs e)
         {
@@ -224,12 +165,6 @@ namespace WindowsFormsApp1
             checkBox5.Checked = false;
             checkBox6.Checked = false;
             checkBox7.Checked = false;
-        }
-
-        //удаление записей
-        public void DeleteG_K(long p, string name)
-        {
-            
         }
 
         //метод при нажатии на кнопку Удалить
@@ -293,6 +228,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //метод при нажатии на кнопку Секции в меню Перейти к ..
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
@@ -300,13 +236,13 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
+        //метод закрытия формы
         private void FormGroups_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
-            ifrm.Close();
+            ifrm.Close();//закрытие главной формы и всего приложения
         }
-
+        //метод при нажатии на кнопку Секции в меню Перейти к ..
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
