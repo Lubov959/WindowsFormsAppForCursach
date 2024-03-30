@@ -34,7 +34,7 @@ namespace WindowsFormsApp1
                     S.Тренер = textBoxTrener.Text;
                     S.Стоимость = Convert.ToDouble(numericUpDownPrice.Value);
 
-                    long p = Sections.Check(comboBoxNameS.Text);//проверка
+                    Sections.Check(comboBoxNameS.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     { S.Add(); }
                     else
@@ -58,11 +58,10 @@ namespace WindowsFormsApp1
         }
 
         //обновление данных в форме относительно файла
-        private void UpDate()
+        public void UpDate() 
         {
             try
             {
-                //File_path();//проверка на существование пути к файлу
                 Sections.Vyvod(out List<Sections> sections);
                 if (sections == null) { statusStrip1.Items[1].Text = "0"; }
                 else
@@ -103,6 +102,7 @@ namespace WindowsFormsApp1
             comboBoxNameS.Text = string.Empty;
             textBoxTrener.Text = string.Empty;
             numericUpDownPrice.Value = numericUpDownPrice.Minimum;
+            statusStrip1.Items[1].Text = "0";
         }
 
         //метод при нажатии на кнопку Удалить
@@ -114,7 +114,7 @@ namespace WindowsFormsApp1
                     throw new Exception("Для удаления записи необходимо нзвание секции!");
                 else
                 {
-                    long p = Sections.Check(comboBoxNameS.Text);//проверка
+                    Sections.Check(comboBoxNameS.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     {
                         DialogResult res = MessageBox.Show("Такой секции нет", "Ошибка удаления",
@@ -185,6 +185,48 @@ namespace WindowsFormsApp1
             ifrm.StartPosition = FormStartPosition.CenterParent; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
+        }
+
+        private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
         }
     }
 }

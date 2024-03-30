@@ -54,7 +54,7 @@ namespace WindowsFormsApp1
                     K.Отчество = textBoxPatronymic.Text;
                     K.Группа = comboBoxGroup.Text;
 
-                    long p = Kids.Check(comboBoxName.Text, comboBoxSurname.Text);//проверка
+                    Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     { K.Add(); }
                     else
@@ -135,6 +135,7 @@ namespace WindowsFormsApp1
             textBoxPatronymic.Text = string.Empty;
             comboBoxGroup.Text = comboBoxGroup.Items[0].ToString();
             comboBoxSurname.Text = string.Empty;
+            statusStrip1.Items[1].Text = "0";
         }
         //удаление
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -146,7 +147,7 @@ namespace WindowsFormsApp1
                     throw new Exception("Для удаления записи необходимы фамилия и имя занимающегося!");
                 else 
                 {
-                    long p = Kids.Check(comboBoxName.Text, comboBoxSurname.Text);//проверка
+                    Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     {
                         DialogResult res = MessageBox.Show("Такого человека нет", "Ошибка удаления",
@@ -205,7 +206,7 @@ namespace WindowsFormsApp1
         {
             if (comboBoxSurname.Text != string.Empty)
             {
-                List<string> list = Kids.Check(comboBoxSurname.Text);
+                Kids.Check(comboBoxSurname.Text, out List<string> list);
                 if (list.Count > 1)
                 {
                     comboBoxName.Items.Clear();

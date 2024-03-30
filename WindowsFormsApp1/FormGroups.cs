@@ -1,20 +1,21 @@
 ﻿using ClassLibraryForBinFile;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
     public partial class FormGroups : Form
     {
-        enum lev:byte
+        public enum lev:byte
         {
             Новички,Лайт,
             Медиум,Хард,
             Профессионалы
         }
 
-        enum day : byte
+        public enum day : byte
         {
             Пн, Вт,Ср,Чт,Пт,Сб,Вс
         }
@@ -25,6 +26,7 @@ namespace WindowsFormsApp1
             //ограничение длинны
             comboBoxNameG.MaxLength = 20;
             //начальные параметры
+            comboBoxLevel.Items.Add(string.Empty);
             comboBoxLevel.Items.AddRange(new object[] { (lev)0, (lev)1, (lev)2, (lev)3, (lev)4 });
             try
             {
@@ -45,8 +47,8 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void FormGroups_Load(object sender, EventArgs e)
-        {
+        private void FormGroups_Load(object sender, EventArgs e) 
+        { 
             UpDate();//вывод файла
         }
 
@@ -81,7 +83,7 @@ namespace WindowsFormsApp1
                     d[6] = checkBox7.Checked;
                     G.Дни = d;
 
-                    long p = Groups.Check(comboBoxNameG.Text);//проверка
+                    Groups.Check(comboBoxNameG.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     { G.Add(); }
                     else
@@ -94,19 +96,21 @@ namespace WindowsFormsApp1
                         if (res == DialogResult.Yes)
                         { G.Correcting(p); }
                     }
+                    Groups.Vyvod(out List<Groups> groups);
+
                     UpDate();
                 }
             }
             catch (Exception ex)
             {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
         }
 
         //обновление данных в форме относительно файла
-        private void UpDate()
+        public void UpDate()
         {
             try
             {
@@ -146,7 +150,7 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
@@ -157,7 +161,7 @@ namespace WindowsFormsApp1
         {
             comboBoxNameG.Text = string.Empty;
             comboBoxSection.Text = comboBoxSection.Items[0].ToString();
-            comboBoxLevel.Text = string.Empty;
+            comboBoxLevel.Text = comboBoxLevel.Items[0].ToString();
             checkBox1.Checked = false;
             checkBox2.Checked = false;
             checkBox3.Checked = false;
@@ -165,6 +169,7 @@ namespace WindowsFormsApp1
             checkBox5.Checked = false;
             checkBox6.Checked = false;
             checkBox7.Checked = false;
+            statusStrip1.Items[1].Text = "0";
         }
 
         //метод при нажатии на кнопку Удалить
@@ -177,10 +182,10 @@ namespace WindowsFormsApp1
                     throw new Exception("Для удаления записи необходимо нзвание группы!");
                 else
                 {
-                    long p = Groups.Check(comboBoxNameG.Text);//проверка
+                    Groups.Check(comboBoxNameG.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет
                     {
-                        DialogResult res = MessageBox.Show("Такой группы нет", "Ошибка удаления",
+                        MessageBox.Show("Такой группы нет", "Ошибка удаления",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                     }
@@ -222,7 +227,7 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
