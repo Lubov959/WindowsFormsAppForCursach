@@ -247,13 +247,76 @@ namespace WindowsFormsApp1
             Form ifrm = Application.OpenForms[0];
             ifrm.Close();//закрытие главной формы и всего приложения
         }
-        //метод при нажатии на кнопку Секции в меню Перейти к ..
+        //метод при нажатии на кнопку ребенок в меню Перейти к ..
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
             ifrm.StartPosition = FormStartPosition.CenterScreen; 
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
+        }
+
+        private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        //метод для автозаполнения полей при выборе уже существующей группы
+        private void comboBoxNameG_Leave(object sender, EventArgs e)
+        {
+            if (comboBoxNameG.Text != string.Empty)
+            {
+                Groups.Check(comboBoxNameG.Text, out Groups g);
+                if (g != null)
+                {
+                    comboBoxSection.Text = g.Секция;
+                    comboBoxLevel.Text = ((lev)g.Уровень).ToString();
+                    checkBox1.Checked = g.Дни[0];
+                    checkBox2.Checked = g.Дни[1];
+                    checkBox3.Checked = g.Дни[2];
+                    checkBox4.Checked = g.Дни[3];
+                    checkBox5.Checked = g.Дни[4];
+                    checkBox6.Checked = g.Дни[5];
+                    checkBox7.Checked = g.Дни[6];
+                }
+            }
         }
     }
 }

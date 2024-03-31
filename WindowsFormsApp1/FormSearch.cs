@@ -1,18 +1,12 @@
 ﻿using ClassLibraryForBinFile;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static WindowsFormsApp1.FormGroups;
+using static WindowsFormsApp1.FormGroups;//для перечисления уровней
 
 namespace WindowsFormsApp1
 {
-    public partial class FormSearch : System.Windows.Forms.Form
+    public partial class FormSearch : Form
     {
         public FormSearch(string s)
         {
@@ -73,7 +67,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                if (groups == null) { statusStrip1.Items[1].Text = "0"; }
+                if (groups.Count<0) { statusStrip1.Items[1].Text = "0"; }
                 else
                 {
                     // настройка вида таблицы
@@ -116,7 +110,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                if (sections == null) { statusStrip1.Items[1].Text = "0"; }
+                if (sections.Count < 0) { statusStrip1.Items[1].Text = "0"; }
                 else
                 {
                     // настройка вида таблицы
@@ -140,34 +134,13 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
         }
 
-        //public bool Equals(string s, string s2)
-        //{
-        //    if ((s == string.Empty)||(s2==string.Empty)) { return false; }
-        //    else if (s.Length!=s2.Length) { return false; }
-        //    else
-        //    {
-        //        for (int i = 0; i < s.Length; i++)
-        //        {
-        //            if (s[i] != s2[i]) {  return false; }
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        //public override bool Equals(object obj)
-        //{
-        //    if (obj == null) return false;
-        //    if (obj.GetType() != GetType()) return false;
-        //    return Equals(obj);
-        //}
-
-
+        //очистка полей и таблицы
         private void buttonClear_Click(object sender, EventArgs e)
         {
             if (groupBoxDays.Visible)
@@ -194,7 +167,7 @@ namespace WindowsFormsApp1
             statusStrip1.Items[1].Text = "0";
         }
 
-
+        //метод при нажатии на кнопку Найти
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             dataGridViewSchool.Rows.Clear(); 
@@ -205,7 +178,16 @@ namespace WindowsFormsApp1
                     (checkBox4.Checked) ||(checkBox5.Checked) ||
                     (checkBox6.Checked) ||(checkBox3.Checked) ||(checkBox7.Checked)))
                 {
-                    //UpDate(groups);
+                    bool[] d = new bool[7];
+                    d[0] = checkBox1.Checked;
+                    d[1] = checkBox2.Checked;
+                    d[2] = checkBox3.Checked;
+                    d[3] = checkBox4.Checked;
+                    d[4] = checkBox5.Checked;
+                    d[5] = checkBox6.Checked;
+                    d[6] = checkBox7.Checked;
+                    Sections.Search(d, out List<Sections> sections);
+                    UpDate(sections);
                 }
                 else if ((groupBoxSL.Visible)&&(comboBoxSection.Text!=string.Empty)
                     &&(comboBoxLevel.Text!=string.Empty))
@@ -246,6 +228,7 @@ namespace WindowsFormsApp1
                 }
             }
             catch (Exception ex) {
+                statusStrip1.Items[1].Text = "0";
                 MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);

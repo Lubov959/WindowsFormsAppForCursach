@@ -174,6 +174,7 @@
             this.toolStripTextBoxS_Tr.Name = "toolStripTextBoxS_Tr";
             this.toolStripTextBoxS_Tr.Size = new System.Drawing.Size(111, 22);
             this.toolStripTextBoxS_Tr.Text = "фамилии тренера";
+            this.toolStripTextBoxS_Tr.Click += new System.EventHandler(this.toolStripTextBoxS_Tr_Click);
             // 
             // toolStripTextBox1
             // 
@@ -186,6 +187,7 @@
             this.toolStripTextBoxS_Day.Name = "toolStripTextBoxS_Day";
             this.toolStripTextBoxS_Day.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxS_Day.Text = "дням занятий";
+            this.toolStripTextBoxS_Day.Click += new System.EventHandler(this.toolStripTextBoxS_Day_Click);
             // 
             // toolStripSeparator2
             // 
@@ -199,6 +201,7 @@
             this.toolStripTextBoxS_SurnKid.Name = "toolStripTextBoxS_SurnKid";
             this.toolStripTextBoxS_SurnKid.Size = new System.Drawing.Size(153, 22);
             this.toolStripTextBoxS_SurnKid.Text = "фамилии занимающегося";
+            this.toolStripTextBoxS_SurnKid.Click += new System.EventHandler(this.toolStripTextBoxS_SurnKid_Click);
             // 
             // toolStripSeparator3
             // 
@@ -225,6 +228,7 @@
             this.toolStripTextBoxG_NS.Name = "toolStripTextBoxG_NS";
             this.toolStripTextBoxG_NS.Size = new System.Drawing.Size(111, 22);
             this.toolStripTextBoxG_NS.Text = "названию секции";
+            this.toolStripTextBoxG_NS.Click += new System.EventHandler(this.toolStripTextBoxG_NS_Click);
             // 
             // toolStripSeparator4
             // 
@@ -238,6 +242,7 @@
             this.toolStripTextBoxG_Tr.Name = "toolStripTextBoxG_Tr";
             this.toolStripTextBoxG_Tr.Size = new System.Drawing.Size(111, 22);
             this.toolStripTextBoxG_Tr.Text = "фамилии тренера";
+            this.toolStripTextBoxG_Tr.Click += new System.EventHandler(this.toolStripTextBoxG_Tr_Click);
             // 
             // toolStripSeparator5
             // 
@@ -251,6 +256,7 @@
             this.toolStripTextBoxG_LS.Name = "toolStripTextBoxG_LS";
             this.toolStripTextBoxG_LS.Size = new System.Drawing.Size(120, 22);
             this.toolStripTextBoxG_LS.Text = "по уровню в секции";
+            this.toolStripTextBoxG_LS.Click += new System.EventHandler(this.toolStripTextBoxG_LS_Click);
             // 
             // panel2
             // 
@@ -321,6 +327,7 @@
             this.comboBoxName.Name = "comboBoxName";
             this.comboBoxName.Size = new System.Drawing.Size(286, 21);
             this.comboBoxName.TabIndex = 23;
+            this.comboBoxName.Leave += new System.EventHandler(this.comboBoxName_Leave);
             // 
             // buttonDelete
             // 
@@ -357,7 +364,6 @@
             this.textBoxPatronymic.Name = "textBoxPatronymic";
             this.textBoxPatronymic.Size = new System.Drawing.Size(286, 22);
             this.textBoxPatronymic.TabIndex = 13;
-            this.textBoxPatronymic.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -425,6 +431,7 @@
             this.dataGridViewKids.MaximumSize = new System.Drawing.Size(380, 300);
             this.dataGridViewKids.MinimumSize = new System.Drawing.Size(465, 200);
             this.dataGridViewKids.Name = "dataGridViewKids";
+            this.dataGridViewKids.ReadOnly = true;
             this.dataGridViewKids.RowHeadersVisible = false;
             this.dataGridViewKids.Size = new System.Drawing.Size(465, 200);
             this.dataGridViewKids.TabIndex = 22;

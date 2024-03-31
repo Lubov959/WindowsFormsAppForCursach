@@ -111,7 +111,7 @@ namespace WindowsFormsApp1
             try
             {
                 if (comboBoxNameS.Text == string.Empty)
-                    throw new Exception("Для удаления записи необходимо нзвание секции!");
+                    throw new Exception("Для удаления записи необходимо ввести нaзвание секции!");
                 else
                 {
                     Sections.Check(comboBoxNameS.Text, out long p);//проверка
@@ -136,11 +136,25 @@ namespace WindowsFormsApp1
                                MessageBoxDefaultButton.Button2);
                             if (res == DialogResult.Yes)
                             {
-                                Groups.Delete(p);
+                                Sections.Delete(p);
                                 foreach (long gr in groups_pos)
                                     Groups.Delete(gr);
                                 foreach (long kid in groups_pos)
                                     Kids.Delete(kid);
+                            }
+                        }
+                        else if(groups_pos.Count > 0) {
+                            DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
+                                $"связанные с ней записи Группы - {groups_pos.Count} шт"
+                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button2);
+                            if (res == DialogResult.Yes)
+                            {
+                                Sections.Delete(p);
+                                foreach (long gr in groups_pos)
+                                    Groups.Delete(gr);
                             }
                         }
                         else
@@ -152,7 +166,7 @@ namespace WindowsFormsApp1
                                MessageBoxDefaultButton.Button2);
                             if (res == DialogResult.Yes)
                             {
-                                Groups.Delete(p);
+                                Sections.Delete(p);
                                 foreach (long kid in groups_pos)
                                     Kids.Delete(kid);
                             }
@@ -227,6 +241,20 @@ namespace WindowsFormsApp1
             FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
             ifrm.StartPosition = FormStartPosition.CenterParent;
             ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        //метод для автозаполнения полей при выборе уже существующей секции
+        private void comboBoxNameS_Leave(object sender, EventArgs e)
+        {
+            if (comboBoxNameS.Text != string.Empty)
+            {
+                Sections.Check(comboBoxNameS.Text, out Sections s);
+                if (s != null)
+                {
+                    textBoxTrener.Text = s.Тренер;
+                    numericUpDownPrice.Value = Convert.ToDecimal(s.Стоимость);
+                }
+            }
         }
     }
 }

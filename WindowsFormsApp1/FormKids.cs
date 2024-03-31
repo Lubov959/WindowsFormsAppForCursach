@@ -132,6 +132,7 @@ namespace WindowsFormsApp1
         private void buttonClear_Click(object sender, EventArgs e)
         {
             comboBoxName.Items.Clear();
+            comboBoxName.Text = string.Empty;
             textBoxPatronymic.Text = string.Empty;
             comboBoxGroup.Text = comboBoxGroup.Items[0].ToString();
             comboBoxSurname.Text = string.Empty;
@@ -200,21 +201,79 @@ namespace WindowsFormsApp1
             this.Hide(); // скрываем текущую
         }
 
-        //метод происходит после заполнения Фамилии
-        //если дети с такой фамилией есть он их записывает в поле Имя
+        //метод для автозаполнения полей при выборе фамилии
         private void comboBoxSurname_Leave(object sender, EventArgs e)
         {
             if (comboBoxSurname.Text != string.Empty)
             {
                 Kids.Check(comboBoxSurname.Text, out List<string> list);
-                if (list.Count > 1)
+                if (list.Count > 1)//уточнение имени
                 {
                     comboBoxName.Items.Clear();
                     foreach (string s in list) { comboBoxName.Items.Add(s); }
                 }
-                else if (list.Count == 1)
+                else if (list.Count == 1)//автозаполнение
+                {
                     comboBoxName.Text = list[0];
+                    Kids.Check(comboBoxName.Text, comboBoxSurname.Text,out Kids k);
+                    textBoxPatronymic.Text = k.Отчество;
+                    comboBoxGroup.Text = k.Группа;
+                }
+                    
             }
+        }
+
+        //метод для автозаполнения полей при выборе имени и фамилии
+        private void comboBoxName_Leave(object sender, EventArgs e)
+        {
+            if ((comboBoxSurname.Text != string.Empty)&&(comboBoxSurname.Text!=string.Empty))
+            {
+                Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out Kids k);
+                textBoxPatronymic.Text = k.Отчество;
+                comboBoxGroup.Text = k.Группа;
+            }
+        }
+
+        private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
+
+        private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
+        {
+            FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
+            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
         }
     }
 }

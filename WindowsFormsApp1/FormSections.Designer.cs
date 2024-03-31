@@ -123,6 +123,7 @@
             this.comboBoxNameS.Name = "comboBoxNameS";
             this.comboBoxNameS.Size = new System.Drawing.Size(286, 21);
             this.comboBoxNameS.TabIndex = 1;
+            this.comboBoxNameS.Leave += new System.EventHandler(this.comboBoxNameS_Leave);
             // 
             // buttonDelete
             // 
@@ -167,20 +168,10 @@
             0,
             0,
             0});
-            this.numericUpDownPrice.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
             this.numericUpDownPrice.Name = "numericUpDownPrice";
             this.numericUpDownPrice.Size = new System.Drawing.Size(158, 22);
             this.numericUpDownPrice.TabIndex = 3;
             this.numericUpDownPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDownPrice.Value = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
             // 
             // textBoxTrener
             // 
@@ -189,7 +180,6 @@
             this.textBoxTrener.Name = "textBoxTrener";
             this.textBoxTrener.Size = new System.Drawing.Size(286, 22);
             this.textBoxTrener.TabIndex = 2;
-            this.textBoxTrener.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -256,7 +246,9 @@
             this.dataGridViewSections.Location = new System.Drawing.Point(16, 34);
             this.dataGridViewSections.MaximumSize = new System.Drawing.Size(380, 300);
             this.dataGridViewSections.MinimumSize = new System.Drawing.Size(465, 200);
+            this.dataGridViewSections.MultiSelect = false;
             this.dataGridViewSections.Name = "dataGridViewSections";
+            this.dataGridViewSections.ReadOnly = true;
             this.dataGridViewSections.RowHeadersVisible = false;
             this.dataGridViewSections.Size = new System.Drawing.Size(465, 200);
             this.dataGridViewSections.TabIndex = 22;
@@ -278,7 +270,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
             // 
             // toolStripTextBoxGroups
             // 
@@ -291,7 +283,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
             // 
             // toolStripTextBoxKids
             // 
@@ -339,7 +331,7 @@
             this.toolStripTextBoxS_SurnKid});
             this.toolStripMenuItem4.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem4.Text = "Секции по...";
             // 
             // toolStripTextBoxS_Tr
@@ -381,7 +373,7 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(138, 6);
             // 
             // toolStripMenuItem2
             // 
@@ -393,7 +385,7 @@
             this.toolStripTextBoxG_LS});
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Bahnschrift", 9F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(141, 22);
             this.toolStripMenuItem2.Text = "Группы по...";
             // 
             // toolStripTextBoxG_NS
