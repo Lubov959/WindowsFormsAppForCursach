@@ -156,7 +156,7 @@
             // numericUpDownPrice
             // 
             this.numericUpDownPrice.DecimalPlaces = 2;
-            this.numericUpDownPrice.Font = new System.Drawing.Font("Bahnschrift", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDownPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.numericUpDownPrice.Increment = new decimal(new int[] {
             100,
             0,
@@ -169,16 +169,16 @@
             0,
             0});
             this.numericUpDownPrice.Name = "numericUpDownPrice";
-            this.numericUpDownPrice.Size = new System.Drawing.Size(158, 22);
+            this.numericUpDownPrice.Size = new System.Drawing.Size(158, 20);
             this.numericUpDownPrice.TabIndex = 3;
             this.numericUpDownPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxTrener
             // 
-            this.textBoxTrener.Font = new System.Drawing.Font("Bahnschrift", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxTrener.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxTrener.Location = new System.Drawing.Point(163, 62);
             this.textBoxTrener.Name = "textBoxTrener";
-            this.textBoxTrener.Size = new System.Drawing.Size(286, 22);
+            this.textBoxTrener.Size = new System.Drawing.Size(286, 20);
             this.textBoxTrener.TabIndex = 2;
             // 
             // label3

@@ -128,7 +128,7 @@ namespace WindowsFormsApp1
                     {//проверка на связные записи
                         Sections.CheckKidsAndGroups(comboBoxNameS.Text, out List<long> groups_pos,
                             out List<long> kids_pos);
-                        if (groups_pos == null)
+                        if ((groups_pos == null)||(groups_pos.Count == 0))
                         {
                             DialogResult res = MessageBox.Show($"Секция {comboBoxNameS.Text} будет удалена." +
                                 $"\n Вы уверены?", "Предупреждение",
@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
                                 DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
                                     $"связанные с ней записи" +
                                     $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
-                                    + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                                    + $" будут удалены.\n Вы уверены?", "Предупреждение",
                                    MessageBoxButtons.YesNo,
                                    MessageBoxIcon.Exclamation,
                                    MessageBoxDefaultButton.Button2);
@@ -156,14 +156,14 @@ namespace WindowsFormsApp1
                                     Sections.Delete(p);
                                     foreach (long gr in groups_pos)
                                         Groups.Delete(gr);
-                                    foreach (long kid in groups_pos)
+                                    foreach (long kid in kids_pos)
                                         Kids.Delete(kid);
                                 }
                             }
                             else if (groups_pos.Count > 0)
                             {
                                 DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-                                    $"связанные с ней записи Группы - {groups_pos.Count} шт"
+                                    $"связанные с ней записи Группы - {groups_pos.Count} шт "
                                     + $"будут удалены.\n Вы уверены?", "Предупреждение",
                                    MessageBoxButtons.YesNo,
                                    MessageBoxIcon.Exclamation,

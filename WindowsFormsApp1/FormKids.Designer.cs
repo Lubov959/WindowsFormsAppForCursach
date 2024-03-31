@@ -359,10 +359,10 @@
             // 
             // textBoxPatronymic
             // 
-            this.textBoxPatronymic.Font = new System.Drawing.Font("Bahnschrift", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPatronymic.Location = new System.Drawing.Point(163, 105);
             this.textBoxPatronymic.Name = "textBoxPatronymic";
-            this.textBoxPatronymic.Size = new System.Drawing.Size(286, 22);
+            this.textBoxPatronymic.Size = new System.Drawing.Size(286, 20);
             this.textBoxPatronymic.TabIndex = 13;
             // 
             // label3

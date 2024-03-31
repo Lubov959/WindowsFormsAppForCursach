@@ -195,7 +195,7 @@ namespace WindowsFormsApp1
                     else
                     {
                         Groups.CheckKids(comboBoxNameG.Text, out List<long> kids_pos);//проверка на связные записи
-                        if (kids_pos==null)
+                        if ((kids_pos == null) || (kids_pos.Count == 0))
                         {
                             DialogResult res = MessageBox.Show($"Группа {comboBoxNameG.Text} будет удалена." +
                                 $"\n Вы уверены?", "Предупреждение",
