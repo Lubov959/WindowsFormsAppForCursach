@@ -63,7 +63,10 @@ namespace WindowsFormsApp1
             try
             {
                 Sections.Vyvod(out List<Sections> sections);
-                if (sections == null) { statusStrip1.Items[1].Text = "0"; }
+                if (sections == null) {
+                    dataGridViewSections.Rows.Clear();
+                    dataGridViewSections.Columns.Clear();
+                    statusStrip1.Items[1].Text = "0"; }
                 else
                 { 
                     // настройка вида таблицы
@@ -117,7 +120,7 @@ namespace WindowsFormsApp1
                     Sections.Check(comboBoxNameS.Text, out long p);//проверка
                     if (p < 0)//если такой записи нет, то записываем в конец
                     {
-                        DialogResult res = MessageBox.Show("Такой секции нет", "Ошибка удаления",
+                        MessageBox.Show("Такой секции нет", "Ошибка удаления",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                     }
@@ -125,39 +128,7 @@ namespace WindowsFormsApp1
                     {//проверка на связные записи
                         Sections.CheckKidsAndGroups(comboBoxNameS.Text, out List<long> groups_pos,
                             out List<long> kids_pos);
-                        if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
-                        {
-                            DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-                                $"связанные с ней записи" +
-                                $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
-                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Exclamation,
-                               MessageBoxDefaultButton.Button2);
-                            if (res == DialogResult.Yes)
-                            {
-                                Sections.Delete(p);
-                                foreach (long gr in groups_pos)
-                                    Groups.Delete(gr);
-                                foreach (long kid in groups_pos)
-                                    Kids.Delete(kid);
-                            }
-                        }
-                        else if(groups_pos.Count > 0) {
-                            DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-                                $"связанные с ней записи Группы - {groups_pos.Count} шт"
-                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Exclamation,
-                               MessageBoxDefaultButton.Button2);
-                            if (res == DialogResult.Yes)
-                            {
-                                Sections.Delete(p);
-                                foreach (long gr in groups_pos)
-                                    Groups.Delete(gr);
-                            }
-                        }
-                        else
+                        if (groups_pos == null)
                         {
                             DialogResult res = MessageBox.Show($"Секция {comboBoxNameS.Text} будет удалена." +
                                 $"\n Вы уверены?", "Предупреждение",
@@ -167,8 +138,42 @@ namespace WindowsFormsApp1
                             if (res == DialogResult.Yes)
                             {
                                 Sections.Delete(p);
-                                foreach (long kid in groups_pos)
-                                    Kids.Delete(kid);
+                            }
+                        }
+                        else
+                        {
+                            if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
+                            {
+                                DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
+                                    $"связанные с ней записи" +
+                                    $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
+                                    + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Exclamation,
+                                   MessageBoxDefaultButton.Button2);
+                                if (res == DialogResult.Yes)
+                                {
+                                    Sections.Delete(p);
+                                    foreach (long gr in groups_pos)
+                                        Groups.Delete(gr);
+                                    foreach (long kid in groups_pos)
+                                        Kids.Delete(kid);
+                                }
+                            }
+                            else if (groups_pos.Count > 0)
+                            {
+                                DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
+                                    $"связанные с ней записи Группы - {groups_pos.Count} шт"
+                                    + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Exclamation,
+                                   MessageBoxDefaultButton.Button2);
+                                if (res == DialogResult.Yes)
+                                {
+                                    Sections.Delete(p);
+                                    foreach (long gr in groups_pos)
+                                        Groups.Delete(gr);
+                                }
                             }
                         }
                     }

@@ -115,7 +115,10 @@ namespace WindowsFormsApp1
             try
             {
                 Groups.Vyvod(out List<Groups> groups);
-                if (groups == null) { statusStrip1.Items[1].Text = "0"; }
+                if (groups == null) { 
+                    dataGridViewGroups.Rows.Clear();
+                    dataGridViewGroups.Columns.Clear();
+                    statusStrip1.Items[1].Text = "0"; }
                 else
                 {
                     // настройка вида таблицы
@@ -192,25 +195,23 @@ namespace WindowsFormsApp1
                     else
                     {
                         Groups.CheckKids(comboBoxNameG.Text, out List<long> kids_pos);//проверка на связные записи
-                        if (kids_pos.Count > 0)
+                        if (kids_pos==null)
                         {
-                            DialogResult res = MessageBox.Show($"Группа {comboBoxNameG.Text} и все кто " +
-                                $"в ней состоят ({kids_pos.Count} шт) "
-                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                            DialogResult res = MessageBox.Show($"Группа {comboBoxNameG.Text} будет удалена." +
+                                $"\n Вы уверены?", "Предупреждение",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button2);
                             if (res == DialogResult.Yes)
                             {
                                 Groups.Delete(p);
-                                foreach (long kid in kids_pos)
-                                    Kids.Delete(kid);
                             }
                         }
                         else
                         {
-                            DialogResult res = MessageBox.Show($"Группа {comboBoxNameG.Text} будет удалена." +
-                                $"\n Вы уверены?", "Предупреждение",
+                            DialogResult res = MessageBox.Show($"Группа {comboBoxNameG.Text} и все кто " +
+                                $"в ней состоят ({kids_pos.Count} шт) "
+                                + $"будут удалены.\n Вы уверены?", "Предупреждение",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button2);

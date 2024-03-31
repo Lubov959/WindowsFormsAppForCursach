@@ -83,7 +83,10 @@ namespace WindowsFormsApp1
             try
             {
                 Kids.Vyvod(out List<Kids> kids);
-                if (kids == null) { statusStrip1.Items[1].Text = "0"; }
+                if (kids == null) { 
+                    dataGridViewKids.Columns.Clear();
+                    dataGridViewKids.Rows.Clear();
+                    statusStrip1.Items[1].Text = "0"; }
                 else
                 {
                     // настройка вида таблицы
@@ -105,9 +108,8 @@ namespace WindowsFormsApp1
                         byte d = 1;//проверка на дубли в списке фамилий
                         foreach(var item in comboBoxSurname.Items)
                         {
-                            if (item.ToString() != kids[i].Фамилия)
-                                d++;
-                            else { d = 0; break; }
+                            if (item.ToString() == kids[i].Фамилия)
+                            { d = 0; break; }
                         }
                         if (d!=0)
                             comboBoxSurname.Items.Add(kids[i].Фамилия);
@@ -207,17 +209,20 @@ namespace WindowsFormsApp1
             if (comboBoxSurname.Text != string.Empty)
             {
                 Kids.Check(comboBoxSurname.Text, out List<string> list);
-                if (list.Count > 1)//уточнение имени
+                if (list != null)
                 {
-                    comboBoxName.Items.Clear();
-                    foreach (string s in list) { comboBoxName.Items.Add(s); }
-                }
-                else if (list.Count == 1)//автозаполнение
-                {
-                    comboBoxName.Text = list[0];
-                    Kids.Check(comboBoxName.Text, comboBoxSurname.Text,out Kids k);
-                    textBoxPatronymic.Text = k.Отчество;
-                    comboBoxGroup.Text = k.Группа;
+                    if (list.Count > 1)//уточнение имени
+                    {
+                        comboBoxName.Items.Clear();
+                        foreach (string s in list) { comboBoxName.Items.Add(s); }
+                    }
+                    else if (list.Count == 1)//автозаполнение
+                    {
+                        comboBoxName.Text = list[0];
+                        Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out Kids k);
+                        textBoxPatronymic.Text = k.Отчество;
+                        comboBoxGroup.Text = k.Группа;
+                    }
                 }
                     
             }
@@ -229,11 +234,14 @@ namespace WindowsFormsApp1
             if ((comboBoxSurname.Text != string.Empty)&&(comboBoxSurname.Text!=string.Empty))
             {
                 Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out Kids k);
-                textBoxPatronymic.Text = k.Отчество;
-                comboBoxGroup.Text = k.Группа;
+                if (k != null)
+                {
+                    textBoxPatronymic.Text = k.Отчество;
+                    comboBoxGroup.Text = k.Группа;
+                }
             }
         }
-
+        //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");

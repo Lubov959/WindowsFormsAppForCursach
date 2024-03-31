@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
                 Sections.Path("Sections");
                 Groups.Path("Groups");
                 Kids.Path("Kids");
+                Application.Run(new FormSections());
             }
             catch (Exception ex)
             {
@@ -29,7 +30,7 @@ namespace WindowsFormsApp1
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
-            Application.Run(new FormSections());
+            
         }
     }
 }

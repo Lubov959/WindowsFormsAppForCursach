@@ -228,6 +228,8 @@ namespace WindowsFormsApp1
                 }
             }
             catch (Exception ex) {
+                dataGridViewSchool.Rows.Clear();
+                dataGridViewSchool.Columns.Clear();
                 statusStrip1.Items[1].Text = "0";
                 MessageBox.Show(ex.Message, "Ошибка",
                             MessageBoxButtons.OK,
