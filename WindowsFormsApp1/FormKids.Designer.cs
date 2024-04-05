@@ -49,14 +49,27 @@
             this.toolStripTextBoxG_Tr = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxG_LS = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxDelAll = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxDelTrener = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxDelGroups = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxDelKids = new System.Windows.Forms.ToolStripTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
-            this.comboBoxSurname = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxID = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.comboBoxName = new System.Windows.Forms.ComboBox();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxSurname = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.comboBoxNameS = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxGroup = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBoxPatronymic = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,7 +96,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 534);
+            this.panel1.Size = new System.Drawing.Size(924, 359);
             this.panel1.TabIndex = 2;
             // 
             // menuStrip1
@@ -93,11 +106,12 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(16, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.toolStripMenuItem5});
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(496, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(920, 24);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -149,6 +163,7 @@
             this.toolStripTextBox2,
             this.toolStripSeparator3,
             this.toolStripTextBox3});
+            this.toolStripMenuItem5.Enabled = false;
             this.toolStripMenuItem5.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(162, 20);
@@ -258,53 +273,108 @@
             this.toolStripTextBoxG_LS.Text = "по уровню в секции";
             this.toolStripTextBoxG_LS.Click += new System.EventHandler(this.toolStripTextBoxG_LS_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.AutoSize = false;
+            this.toolStripMenuItem2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator7,
+            this.toolStripTextBoxDelAll,
+            this.toolStripSeparator8,
+            this.toolStripTextBoxDelTrener,
+            this.toolStripSeparator9,
+            this.toolStripTextBoxDelGroups,
+            this.toolStripSeparator10,
+            this.toolStripTextBoxDelKids});
+            this.toolStripMenuItem2.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 20);
+            this.toolStripMenuItem2.Text = "Доп действия";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripTextBoxDelAll
+            // 
+            this.toolStripTextBoxDelAll.AutoSize = false;
+            this.toolStripTextBoxDelAll.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxDelAll.Name = "toolStripTextBoxDelAll";
+            this.toolStripTextBoxDelAll.Size = new System.Drawing.Size(120, 22);
+            this.toolStripTextBoxDelAll.Text = "Удалить все данные";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripTextBoxDelTrener
+            // 
+            this.toolStripTextBoxDelTrener.AutoSize = false;
+            this.toolStripTextBoxDelTrener.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxDelTrener.Name = "toolStripTextBoxDelTrener";
+            this.toolStripTextBoxDelTrener.Size = new System.Drawing.Size(135, 22);
+            this.toolStripTextBoxDelTrener.Text = "Удалить всех тренеров";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripTextBoxDelGroups
+            // 
+            this.toolStripTextBoxDelGroups.AutoSize = false;
+            this.toolStripTextBoxDelGroups.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxDelGroups.Name = "toolStripTextBoxDelGroups";
+            this.toolStripTextBoxDelGroups.Size = new System.Drawing.Size(135, 22);
+            this.toolStripTextBoxDelGroups.Text = "Удалить все группы";
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripTextBoxDelKids
+            // 
+            this.toolStripTextBoxDelKids.AutoSize = false;
+            this.toolStripTextBoxDelKids.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxDelKids.Name = "toolStripTextBoxDelKids";
+            this.toolStripTextBoxDelKids.Size = new System.Drawing.Size(135, 22);
+            this.toolStripTextBoxDelKids.Text = "Удалить всех учеников";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.comboBoxGroup);
-            this.panel2.Controls.Add(this.comboBoxSurname);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.textBoxID);
             this.panel2.Controls.Add(this.buttonClear);
-            this.panel2.Controls.Add(this.comboBoxName);
             this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.buttonSave);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.textBoxSurname);
+            this.panel2.Controls.Add(this.textBoxName);
+            this.panel2.Controls.Add(this.comboBoxNameS);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.comboBoxGroup);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.textBoxPatronymic);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(16, 258);
+            this.panel2.Location = new System.Drawing.Point(498, 34);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(465, 242);
+            this.panel2.Size = new System.Drawing.Size(409, 298);
             this.panel2.TabIndex = 24;
             // 
-            // comboBoxGroup
+            // textBoxID
             // 
-            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGroup.FormattingEnabled = true;
-            this.comboBoxGroup.Location = new System.Drawing.Point(163, 148);
-            this.comboBoxGroup.Name = "comboBoxGroup";
-            this.comboBoxGroup.Size = new System.Drawing.Size(286, 21);
-            this.comboBoxGroup.TabIndex = 27;
-            // 
-            // comboBoxSurname
-            // 
-            this.comboBoxSurname.FormattingEnabled = true;
-            this.comboBoxSurname.Location = new System.Drawing.Point(163, 21);
-            this.comboBoxSurname.Name = "comboBoxSurname";
-            this.comboBoxSurname.Size = new System.Drawing.Size(286, 21);
-            this.comboBoxSurname.TabIndex = 26;
-            this.comboBoxSurname.Leave += new System.EventHandler(this.comboBoxSurname_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 19);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Фамилия";
+            this.textBoxID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxID.Location = new System.Drawing.Point(103, 18);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.ReadOnly = true;
+            this.textBoxID.Size = new System.Drawing.Size(286, 20);
+            this.textBoxID.TabIndex = 37;
             // 
             // buttonClear
             // 
@@ -312,22 +382,13 @@
             this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClear.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonClear.Location = new System.Drawing.Point(167, 198);
+            this.buttonClear.Location = new System.Drawing.Point(148, 259);
             this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(125, 27);
-            this.buttonClear.TabIndex = 24;
+            this.buttonClear.Size = new System.Drawing.Size(103, 27);
+            this.buttonClear.TabIndex = 36;
             this.buttonClear.Text = "Очистить";
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
-            // 
-            // comboBoxName
-            // 
-            this.comboBoxName.FormattingEnabled = true;
-            this.comboBoxName.Location = new System.Drawing.Point(163, 64);
-            this.comboBoxName.Name = "comboBoxName";
-            this.comboBoxName.Size = new System.Drawing.Size(286, 21);
-            this.comboBoxName.TabIndex = 23;
-            this.comboBoxName.Leave += new System.EventHandler(this.comboBoxName_Leave);
             // 
             // buttonDelete
             // 
@@ -335,10 +396,10 @@
             this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonDelete.Location = new System.Drawing.Point(16, 198);
+            this.buttonDelete.Location = new System.Drawing.Point(16, 259);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(119, 27);
-            this.buttonDelete.TabIndex = 22;
+            this.buttonDelete.Size = new System.Drawing.Size(97, 27);
+            this.buttonDelete.TabIndex = 34;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -349,18 +410,82 @@
             this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonSave.Location = new System.Drawing.Point(324, 198);
+            this.buttonSave.Location = new System.Drawing.Point(286, 259);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(125, 27);
-            this.buttonSave.TabIndex = 22;
+            this.buttonSave.Size = new System.Drawing.Size(103, 27);
+            this.buttonSave.TabIndex = 35;
             this.buttonSave.Text = "Записать";
             this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(12, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 19);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Id ученика";
+            // 
+            // textBoxSurname
+            // 
+            this.textBoxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxSurname.Location = new System.Drawing.Point(103, 55);
+            this.textBoxSurname.Name = "textBoxSurname";
+            this.textBoxSurname.Size = new System.Drawing.Size(286, 20);
+            this.textBoxSurname.TabIndex = 31;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxName.Location = new System.Drawing.Point(103, 94);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(286, 20);
+            this.textBoxName.TabIndex = 30;
+            // 
+            // comboBoxNameS
+            // 
+            this.comboBoxNameS.FormattingEnabled = true;
+            this.comboBoxNameS.Location = new System.Drawing.Point(103, 173);
+            this.comboBoxNameS.Name = "comboBoxNameS";
+            this.comboBoxNameS.Size = new System.Drawing.Size(286, 21);
+            this.comboBoxNameS.TabIndex = 28;
+            this.comboBoxNameS.SelectionChangeCommitted += new System.EventHandler(this.comboBoxNameS_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(12, 175);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 19);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Секция";
+            // 
+            // comboBoxGroup
+            // 
+            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGroup.FormattingEnabled = true;
+            this.comboBoxGroup.Location = new System.Drawing.Point(103, 213);
+            this.comboBoxGroup.Name = "comboBoxGroup";
+            this.comboBoxGroup.Size = new System.Drawing.Size(286, 21);
+            this.comboBoxGroup.TabIndex = 27;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 19);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Фамилия";
+            // 
             // textBoxPatronymic
             // 
             this.textBoxPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPatronymic.Location = new System.Drawing.Point(163, 105);
+            this.textBoxPatronymic.Location = new System.Drawing.Point(103, 134);
             this.textBoxPatronymic.Name = "textBoxPatronymic";
             this.textBoxPatronymic.Size = new System.Drawing.Size(286, 20);
             this.textBoxPatronymic.TabIndex = 13;
@@ -369,17 +494,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 150);
+            this.label3.Location = new System.Drawing.Point(12, 215);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 19);
+            this.label3.Size = new System.Drawing.Size(44, 19);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Название группы";
+            this.label3.Text = "Группа";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 108);
+            this.label1.Location = new System.Drawing.Point(12, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 9;
@@ -389,7 +514,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 66);
+            this.label5.Location = new System.Drawing.Point(12, 95);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 19);
             this.label5.TabIndex = 8;
@@ -401,9 +526,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 508);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 333);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(496, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(920, 22);
             this.statusStrip1.TabIndex = 23;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -433,18 +558,20 @@
             this.dataGridViewKids.Name = "dataGridViewKids";
             this.dataGridViewKids.ReadOnly = true;
             this.dataGridViewKids.RowHeadersVisible = false;
-            this.dataGridViewKids.Size = new System.Drawing.Size(465, 200);
+            this.dataGridViewKids.Size = new System.Drawing.Size(465, 298);
             this.dataGridViewKids.TabIndex = 22;
+            this.dataGridViewKids.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewKids_CellMouseDown);
+            this.dataGridViewKids.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKids_RowEnter);
             // 
             // FormKids
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 534);
+            this.ClientSize = new System.Drawing.Size(924, 359);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormKids";
-            this.Text = "Занимающиеся";
+            this.Text = "Ученики";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormKids_FormClosed);
             this.Load += new System.EventHandler(this.FormKids_Load);
             this.panel1.ResumeLayout(false);
@@ -484,10 +611,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxG_LS;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.ComboBox comboBoxName;
-        private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxPatronymic;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -496,8 +619,25 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.DataGridView dataGridViewKids;
-        private System.Windows.Forms.ComboBox comboBoxSurname;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxGroup;
+        private System.Windows.Forms.ComboBox comboBoxNameS;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelTrener;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelGroups;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelKids;
+        private System.Windows.Forms.TextBox textBoxSurname;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxID;
     }
 }

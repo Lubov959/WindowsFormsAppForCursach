@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAutoresations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutoresations.Designer.cs">
+      <DependentUpon>FormAutoresations.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormGroups.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,14 +74,17 @@
     <Compile Include="FormSearch.Designer.cs">
       <DependentUpon>FormSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSections.cs">
+    <Compile Include="FormTreners.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSections.Designer.cs">
-      <DependentUpon>FormSections.cs</DependentUpon>
+    <Compile Include="FormTreners.Designer.cs">
+      <DependentUpon>FormTreners.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAutoresations.resx">
+      <DependentUpon>FormAutoresations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGroups.resx">
       <DependentUpon>FormGroups.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,8 +94,8 @@
     <EmbeddedResource Include="FormSearch.resx">
       <DependentUpon>FormSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSections.resx">
-      <DependentUpon>FormSections.cs</DependentUpon>
+    <EmbeddedResource Include="FormTreners.resx">
+      <DependentUpon>FormTreners.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

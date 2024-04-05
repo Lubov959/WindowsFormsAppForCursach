@@ -1,8 +1,5 @@
 ﻿using ClassLibraryForBinFile;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -19,10 +16,11 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                Sections.Path("Sections");
+                Treners.Path("Treners");
                 Groups.Path("Groups");
                 Kids.Path("Kids");
-                Application.Run(new FormSections());
+                Application.Run(new FormTreners());
+               // Application.Run(new FormAutoresations());
             }
             catch (Exception ex)
             {
