@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using ClassLibraryForBinFile;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -33,7 +32,7 @@ namespace WindowsFormsApp1
             UpDate();//вывод файла
         }
 
-        // метод нажатия на кнопку "Cохранить данные в файл"
+        // метод записи в файл
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try
@@ -141,7 +140,7 @@ namespace WindowsFormsApp1
             numericUpDown1.Value = numericUpDown1.Minimum;
         }
 
-        // object[] currentRow = new object[5];
+        //контекстное меню
         private void dataGridViewTreners_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (FormAutoresations.rol == "admin")
@@ -266,8 +265,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
-        //перемещение между формами
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
@@ -276,6 +273,7 @@ namespace WindowsFormsApp1
             this.Hide(); // скрываем текущую
         }
 
+        //закрытие формы
         private void FormTreners_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
@@ -325,6 +323,7 @@ namespace WindowsFormsApp1
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
+        //доп действия
         private void toolStripTextBoxRol_Click(object sender, EventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
@@ -332,7 +331,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
         private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все люди из таблицы Ученики" +
@@ -344,7 +342,6 @@ namespace WindowsFormsApp1
             { Kids.DeleteKids(); }
 
         }
-
         private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все группы и их участники" +
@@ -355,7 +352,6 @@ namespace WindowsFormsApp1
             if (res == DialogResult.Yes)
             {Groups.DeleteGroups();}
         }
-
         private void toolStripTextBoxDelTrener_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все тренера, группы и их участники" +
@@ -370,7 +366,6 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
         private void toolStripTextBoxDelAll_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Вся база данных Спортивной школы" +
@@ -385,28 +380,27 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
-        //ввод только букв и бакспайс
-        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
         private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
         {
             Sparavka ifrm = new Sparavka();
             ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
+
+        //ввод только букв и бакспайс
+        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        
     }
 }

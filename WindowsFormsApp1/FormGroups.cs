@@ -57,6 +57,7 @@ namespace WindowsFormsApp1
 
         }
 
+        //метод для красивого строкового представления группы вместо id
         public static void StringTo(Groups g, out string s_gr)
         {
             s_gr = string.Join("_", g.Секция, (year)g.Возраст, (pol)g.Пол, (lev)g.Уровень);
@@ -67,7 +68,7 @@ namespace WindowsFormsApp1
             UpDate();//вывод файла
         }
 
-        // метод нажатия на кнопку "Cохранить данные в файл"
+        // метод записи в файл
         private void buttonSave_Click(object sender, EventArgs e)
 
         {
@@ -171,8 +172,8 @@ namespace WindowsFormsApp1
                     dataGridViewGroups.Columns[7].Name = "Стоимость";
                     dataGridViewGroups.Columns[8].Name = "Макс_участников";
                     dataGridViewGroups.Columns[9].Name = "ID";
-                    //dataGridViewTreners.Columns[0].Visible = false;
-                    //dataGridViewTreners.Columns[9].Visible = false;
+                    dataGridViewGroups.Columns[0].Visible = false;
+                    dataGridViewGroups.Columns[9].Visible = false;
 
                     //очистка списка названий секций
                     comboBoxSection.Items.Clear();
@@ -250,13 +251,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-        //метод закрытия формы
-        private void FormGroups_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();//закрытие главной формы и всего приложения
-        }
-        //метод при нажатии на кнопку ребенок в меню Перейти к ..
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
@@ -264,7 +258,14 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
+        //метод закрытия формы
+        private void FormGroups_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();//закрытие главной формы и всего приложения
+        }
+        
+        //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
@@ -446,6 +447,7 @@ namespace WindowsFormsApp1
             numericUpDownMax.Minimum = kids.Count;
         }
 
+        //доп действия
         private void toolStripTextBoxRol_Click(object sender, EventArgs e)
         {
             Form ifrm = Application.OpenForms[0];
@@ -453,7 +455,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
         private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все люди из таблицы Ученики" +
@@ -465,7 +466,6 @@ namespace WindowsFormsApp1
             {Kids.DeleteKids();}
 
         }
-
         private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все группы и их участники" +
@@ -480,7 +480,6 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
         private void toolStripTextBoxDelTrener_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все тренера, группы и их участники" +
@@ -494,7 +493,6 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
         private void toolStripTextBoxDelAll_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Вся база данных Спортивной школы" +
@@ -508,6 +506,12 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
+        private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
+        {
+            Sparavka ifrm = new Sparavka();
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
 
         //ввод только букв и бакспайс
         private void comboBoxSection_KeyPress(object sender, KeyPressEventArgs e)
@@ -515,11 +519,6 @@ namespace WindowsFormsApp1
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
 
-        private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
-        {
-            Sparavka ifrm = new Sparavka();
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
-        }
+        
     }
 }

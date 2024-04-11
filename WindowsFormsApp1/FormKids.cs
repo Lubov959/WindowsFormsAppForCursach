@@ -1,9 +1,7 @@
 ﻿using ClassLibraryForBinFile;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -41,7 +39,7 @@ namespace WindowsFormsApp1
             UpDate();//вывод файла
         }
 
-        // метод нажатия на кнопку "Cохранить данные в файл"
+        // метод записи в файл
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try
@@ -170,15 +168,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-        
-        //закрытие
-        private void FormKids_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();
-        }
-        
-        //передвижение между формами
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
             Form ifrm = new FormTreners();
@@ -186,9 +175,12 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
-        
-
+        //закрытие
+        private void FormKids_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
+        }
         
         //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
@@ -276,30 +268,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void comboBoxGroup_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            //Groups.Vyvod(out List<Groups> groups);
-            //if (groups != null)
-            //{
-            //    foreach (Groups grp in groups)
-            //    {
-            //        FormGroups.StringTo(grp, out string s_gr);
-            //        if (s_gr == comboBoxGroup.SelectedItem.ToString())
-            //        {
-            //            Kids.Search(grp.ID, out List<Kids> kid);
-            //            if ((comboBoxGroup.Text != s_gr) && (grp.Max == kid.Count))
-            //            {
-            //                MessageBox.Show($"В группе {s_gr} нет свободных мест!", "Ошибка",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //            }
-            //        }
-            //    }
-
-            //}
-        }
-
-
+        //контекстное меню
         private void dataGridViewKids_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right) 
@@ -352,6 +321,7 @@ namespace WindowsFormsApp1
             }
             
         }
+
         // Корректировка записи
         void upDateMenuItem_Click(object sender, EventArgs e)
         {
@@ -380,6 +350,7 @@ namespace WindowsFormsApp1
             comboBoxGroup.Text = s_group;
         }
 
+        //доп действия
         //сменить роль
         private void toolStripTextBoxRol_Click(object sender, EventArgs e)
         {
@@ -388,8 +359,6 @@ namespace WindowsFormsApp1
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
-
-        //удаление как доп действие
         private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все люди из таблицы Ученики" +
@@ -405,7 +374,6 @@ namespace WindowsFormsApp1
             }
            
         }
-
         private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все группы и их участники" +
@@ -419,7 +387,6 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
         private void toolStripTextBoxDelTrener_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Все тренера, группы и их участники" +
@@ -433,7 +400,6 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
         private void toolStripTextBoxDelAll_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show($"Вся база данных Спортивной школы" +
@@ -447,28 +413,27 @@ namespace WindowsFormsApp1
                 UpDate();
             }
         }
-
-        //ввод только букв и бакспайс
-        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
         private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
         {
             Sparavka ifrm = new Sparavka();
             ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
+
+        //ввод только букв и бакспайс
+        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        
     }
 }

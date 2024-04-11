@@ -61,11 +61,5 @@ namespace WindowsFormsApp1
             textBoxLogin.Text = string.Empty;
             textBoxPassword.Text = string.Empty;
         }
-
-        private void FormAutoresations_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();
-        }
     }
 }

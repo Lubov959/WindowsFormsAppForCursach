@@ -461,7 +461,7 @@
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(286, 21);
             this.comboBoxGroup.TabIndex = 27;
-            this.comboBoxGroup.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGroup_SelectionChangeCommitted);
+            
             // 
             // label2
             // 
