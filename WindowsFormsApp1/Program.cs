@@ -19,8 +19,8 @@ namespace WindowsFormsApp1
                 Treners.Path("Treners");
                 Groups.Path("Groups");
                 Kids.Path("Kids");
-                Application.Run(new FormTreners());
-               // Application.Run(new FormAutoresations());
+                //Application.Run(new FormTreners());
+               Application.Run(new FormAutoresations());
             }
             catch (Exception ex)
             {

@@ -30,11 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonOpen = new System.Windows.Forms.Button();
-            this.textBoxLogin = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,38 +64,6 @@
             this.panel2.Size = new System.Drawing.Size(269, 168);
             this.panel2.TabIndex = 24;
             // 
-            // buttonOpen
-            // 
-            this.buttonOpen.BackColor = System.Drawing.Color.IndianRed;
-            this.buttonOpen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOpen.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonOpen.Location = new System.Drawing.Point(75, 123);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(101, 27);
-            this.buttonOpen.TabIndex = 22;
-            this.buttonOpen.Text = "Войти";
-            this.buttonOpen.UseVisualStyleBackColor = false;
-            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
-            // 
-            // textBoxLogin
-            // 
-            this.textBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxLogin.Location = new System.Drawing.Point(104, 22);
-            this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(148, 20);
-            this.textBoxLogin.TabIndex = 24;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 19);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Логин";
-            // 
             // textBoxPassword
             // 
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -116,6 +84,38 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "Пароль";
             // 
+            // textBoxLogin
+            // 
+            this.textBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLogin.Location = new System.Drawing.Point(104, 22);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(148, 20);
+            this.textBoxLogin.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 19);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Логин";
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpen.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
+            this.buttonOpen.Location = new System.Drawing.Point(75, 123);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(101, 27);
+            this.buttonOpen.TabIndex = 22;
+            this.buttonOpen.Text = "Войти";
+            this.buttonOpen.UseVisualStyleBackColor = false;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            // 
             // FormAutoresations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,7 +124,9 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormAutoresations";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAutoresations_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

@@ -8,68 +8,69 @@ namespace WindowsFormsApp1
 {
     public partial class FormTreners : Form
     {
+        Treners T;
         public FormTreners()
         {
             InitializeComponent();
-            //ограничение длинны
-            textBoxName.MaxLength = 15;
-            textBoxSurname.MaxLength = 20;
-            textBoxPatronymic.MaxLength = 20;
+            if (FormAutoresations.rol == "operator")
+            {
+                this.Width = 511;
+                toolStripTextBoxDelKids.Enabled = true;
+                toolStripTextBoxDelAll.Enabled = true;
+                toolStripTextBoxDelGroups.Enabled = true;
+                toolStripTextBoxDelTrener.Enabled = true;
+            }
+            else
+            {
+                //ограничение длинны
+                textBoxName.MaxLength = 15;
+                textBoxSurname.MaxLength = 20;
+                textBoxPatronymic.MaxLength = 20;
+            }
         }
         private void FormSections_Load(object sender, EventArgs e)
         {
             UpDate();//вывод файла
         }
-        
+
         // метод нажатия на кнопку "Cохранить данные в файл"
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try
             {
                 //проверка на пустоту полей
-                if ( (textBoxName.Text == string.Empty)
+                if ((textBoxName.Text == string.Empty)
                     || (textBoxSurname.Text == string.Empty) || (textBoxPatronymic.Text == string.Empty))
                     throw new Exception("Поля записи не должны быть пустыми!");
                 else
                 {
-                    if (textBoxID.Text == string.Empty)
+                    if (T == null) { T = new Treners(); }
+                    // прочтём данные, вводимые пользователем
+                    T.Имя = textBoxName.Text;
+                    T.Фамилия = textBoxSurname.Text;
+                    T.Отчество = textBoxPatronymic.Text;
+                    T.Стаж = Convert.ToDouble(numericUpDown1.Value);
+                    if (T.ID == 0)
                     {
-                        Treners T = new Treners(); // новая запись
-                                             // прочтём данные, вводимые пользователем
-                        T.Имя = textBoxName.Text;
-                        T.Фамилия = textBoxSurname.Text;
-                        T.Отчество = textBoxPatronymic.Text;
-
-                        Treners.Check(T.ID, out long p);
-                        if(p<0)
-                        { T.Add(); }
-                        else
-                        {
-                            DialogResult res = MessageBox.Show("Такая человек уже есть! \nИзменить данные? ", "Предупреждение",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button2);
-                            if (res == DialogResult.Yes)
-                            {
-                                textBoxID.Text = T.ID;
-                                T.Correcting(p);
-                            }
-                        }
+                        T.Add();
+                        T = null;
                     }
                     else
                     {
-
-                        DialogResult res = MessageBox.Show("Такая человек уже есть! \nИзменить данные? ", "Предупреждение",
+                        DialogResult res = MessageBox.Show("Вы уверены, что хотите " +
+                            "\nизменить данные? ", "Предупреждение",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button2);
                         if (res == DialogResult.Yes)
                         {
-                            Treners.Check(textBoxID.Text, out long p, out Treners t);
-                            t.Correcting(p);
+                            Treners.Search(T.ID, out long p, out Treners t);
+                            T.Correcting(p);
+                            T = null;
                         }
                     }
                     UpDate();
+                    buttonClear_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -81,7 +82,7 @@ namespace WindowsFormsApp1
         }
 
         //обновление данных в форме относительно файла
-        public void UpDate() 
+        public void UpDate()
         {
             try
             {
@@ -133,191 +134,135 @@ namespace WindowsFormsApp1
         //очистка полей
         private void buttonClear_Click(object sender, EventArgs e)
         {
+            T = null;
             textBoxName.Text = string.Empty;
             textBoxSurname.Text = string.Empty;
             textBoxPatronymic.Text = string.Empty;
             numericUpDown1.Value = numericUpDown1.Minimum;
-            textBoxID.Text = string.Empty;
         }
 
-        string[] currentRow = new string[5];
+        // object[] currentRow = new object[5];
         private void dataGridViewTreners_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (FormAutoresations.rol == "admin")
             {
-                ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
-                // создаем элементы меню
-                ToolStripMenuItem upDateMenuItem = new ToolStripMenuItem("Изменить");
-                ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Удалить");
-                // добавляем элементы в меню
-                contextMenuStrip.Items.AddRange(new[] { upDateMenuItem, deleteMenuItem });
-                //привязка к объекту
-                dataGridViewTreners.ContextMenuStrip = contextMenuStrip;
-                for (int i = 0; i < dataGridViewTreners.ColumnCount; i++)
+                if (e.Button == MouseButtons.Right)
                 {
-                    currentRow[i] = dataGridViewTreners.Rows[e.RowIndex].Cells[i].Value.ToString();
-                }
-                // устанавливаем обработчики событий для меню
-                upDateMenuItem.Click += upDateMenuItem_Click;
-                deleteMenuItem.Click += deleteMenuItem_Click;
+                    ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+                    // создаем элементы меню
+                    ToolStripMenuItem upDateMenuItem = new ToolStripMenuItem("Изменить");
+                    ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Удалить");
+                    // добавляем элементы в меню
+                    contextMenuStrip.Items.AddRange(new[] { upDateMenuItem, deleteMenuItem });
+                    //привязка к объекту
+                    dataGridViewTreners.ContextMenuStrip = contextMenuStrip;
+                    T = new Treners();
+                    T.ID = (long)dataGridViewTreners.Rows[e.RowIndex].Cells[0].Value;
+                    T.Фамилия = (string)dataGridViewTreners.Rows[e.RowIndex].Cells[1].Value;
+                    T.Имя = (string)dataGridViewTreners.Rows[e.RowIndex].Cells[2].Value;
+                    T.Отчество = (string)dataGridViewTreners.Rows[e.RowIndex].Cells[3].Value;
+                    T.Стаж = (double)dataGridViewTreners.Rows[e.RowIndex].Cells[4].Value;
+                    // устанавливаем обработчики событий для меню
+                    upDateMenuItem.Click += upDateMenuItem_Click;
+                    deleteMenuItem.Click += deleteMenuItem_Click;
 
+                }
             }
         }
 
-        //
+        //метод при выборе из контекстного меню кнопки Удалить
         void deleteMenuItem_Click(object sender, EventArgs e)
         {
-            //проверка на связные записи
-            Treners.CheckKidsAndGroups(comboBoxNameS.Text, out List<long> groups_pos,
-                out List<long> kids_pos);
-            if ((groups_pos == null) || (groups_pos.Count == 0))
+            try
             {
-                DialogResult res = MessageBox.Show($"Секция {comboBoxNameS.Text} будет удалена." +
-                    $"\n Вы уверены?", "Предупреждение",
-                   MessageBoxButtons.YesNo,
-                   MessageBoxIcon.Exclamation,
-                   MessageBoxDefaultButton.Button2);
-                if (res == DialogResult.Yes)
+
+                //проверка на связные записи
+                Treners.CheckKidsAndGroups(T.ID, out List<long> groups_pos,
+                    out List<long> kids_pos);
+                Treners.Search(T.ID, out long pos, out Treners t);
+                if ((groups_pos == null) || (groups_pos.Count == 0))
                 {
-                    Treners.Delete(p);
-                }
-            }
-            else
-            {
-                if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
-                {
-                    DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-                        $"связанные с ней записи" +
-                        $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
-                        + $" будут удалены.\n Вы уверены?", "Предупреждение",
+                    DialogResult res = MessageBox.Show($"Человек { T.Фамилия}"
+                        + $" {T.Имя} будет удален.\n Вы уверены?", "Предупреждение",
                        MessageBoxButtons.YesNo,
                        MessageBoxIcon.Exclamation,
                        MessageBoxDefaultButton.Button2);
                     if (res == DialogResult.Yes)
                     {
-                        Sections.Delete(p);
-                        foreach (long gr in groups_pos)
-                            Groups.Delete(gr);
-                        foreach (long kid in kids_pos)
-                            Kids.Delete(kid);
+                        if (pos >= 0)
+                        { Treners.Delete(pos); T = null; }
+                        UpDate();
                     }
                 }
-                else if (groups_pos.Count > 0)
+                else
                 {
-                    DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-                        $"связанные с ней записи Группы - {groups_pos.Count} шт "
-                        + $"будут удалены.\n Вы уверены?", "Предупреждение",
-                       MessageBoxButtons.YesNo,
-                       MessageBoxIcon.Exclamation,
-                       MessageBoxDefaultButton.Button2);
-                    if (res == DialogResult.Yes)
+                    if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
                     {
-                        Sections.Delete(p);
-                        foreach (long gr in groups_pos)
-                            Groups.Delete(gr);
+                        DialogResult res = MessageBox.Show($"Человек { T.Фамилия} "
+                        + $"{T.Имя}, а также " + $"связанные с ней записи" +
+                            $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
+                            + $" будут удалены.\n Вы уверены?", "Предупреждение",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Exclamation,
+                           MessageBoxDefaultButton.Button2);
+                        if (res == DialogResult.Yes)
+                        {
+                            if (pos >= 0)
+                            { Treners.Delete(pos); T = null; }
+                            foreach (long gr in groups_pos)
+                            { Groups.Search(gr, out long p, out Groups g); Groups.Delete(p); }
+                            foreach (long kid in kids_pos)
+                            { Kids.Search(kid, out long p, out Kids k); Kids.Delete(p); }
+                            UpDate();
+                        }
+                    }
+                    else if (groups_pos.Count > 0)
+                    {
+                        DialogResult res = MessageBox.Show($"Человек { T.Фамилия} "
+                        + $"{T.Имя}, а также " +
+                            $"связанные с ней записи Группы - {groups_pos.Count} шт "
+                            + $"будут удалены.\n Вы уверены?", "Предупреждение",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Exclamation,
+                           MessageBoxDefaultButton.Button2);
+                        if (res == DialogResult.Yes)
+                        {
+                            if (pos >= 0)
+                            { Treners.Delete(pos); T = null; }
+                            foreach (long gr in groups_pos)
+                            { Groups.Search(gr, out long p, out Groups g); Groups.Delete(p); }
+                        }
                     }
                 }
+
+
+
             }
-                Treners.Check(currentRow[0].ToString(), out long pos);
-            if (pos > 0)
-                Treners.Delete(pos);
-            UpDate();
-        }
-        // 
-        void upDateMenuItem_Click(object sender, EventArgs e)
-        {
-            textBoxID.Text = currentRow[0].ToString();
-            textBoxName.Text = currentRow[2].ToString();
-            textBoxPatronymic.Text = currentRow[3].ToString();
-            textBoxSurname.Text = currentRow[1].ToString();
-            numericUpDown1.Value = Convert.ToUInt16( currentRow[4]);
+            catch (Exception ex)
+            {
+                DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+
         }
 
-        //метод при нажатии на кнопку Удалить
-        private void buttonDelete_Click(object sender, EventArgs e)
+        //метод при выборе из контекстного меню кнопки Изменить
+        void upDateMenuItem_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (comboBoxNameS.Text == string.Empty)
-            //        throw new Exception("Для удаления записи необходимо ввести нaзвание секции!");
-            //    else
-            //    {
-            //        Sections.Check(comboBoxNameS.Text, out long p);//проверка
-            //        if (p < 0)//если такой записи нет, то записываем в конец
-            //        {
-            //            MessageBox.Show("Такой секции нет", "Ошибка удаления",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //        }
-            //        else
-            //        {//проверка на связные записи
-            //            Sections.CheckKidsAndGroups(comboBoxNameS.Text, out List<long> groups_pos,
-            //                out List<long> kids_pos);
-            //            if ((groups_pos == null) || (groups_pos.Count == 0))
-            //            {
-            //                DialogResult res = MessageBox.Show($"Секция {comboBoxNameS.Text} будет удалена." +
-            //                    $"\n Вы уверены?", "Предупреждение",
-            //                   MessageBoxButtons.YesNo,
-            //                   MessageBoxIcon.Exclamation,
-            //                   MessageBoxDefaultButton.Button2);
-            //                if (res == DialogResult.Yes)
-            //                {
-            //                    Sections.Delete(p);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                if ((groups_pos.Count > 0) && (kids_pos.Count > 0))
-            //                {
-            //                    DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-            //                        $"связанные с ней записи" +
-            //                        $" (Группы - {groups_pos.Count} и Занимающиеся - {kids_pos.Count})"
-            //                        + $" будут удалены.\n Вы уверены?", "Предупреждение",
-            //                       MessageBoxButtons.YesNo,
-            //                       MessageBoxIcon.Exclamation,
-            //                       MessageBoxDefaultButton.Button2);
-            //                    if (res == DialogResult.Yes)
-            //                    {
-            //                        Sections.Delete(p);
-            //                        foreach (long gr in groups_pos)
-            //                            Groups.Delete(gr);
-            //                        foreach (long kid in kids_pos)
-            //                            Kids.Delete(kid);
-            //                    }
-            //                }
-            //                else if (groups_pos.Count > 0)
-            //                {
-            //                    DialogResult res = MessageBox.Show($"Секциия {comboBoxNameS.Text}, а также " +
-            //                        $"связанные с ней записи Группы - {groups_pos.Count} шт "
-            //                        + $"будут удалены.\n Вы уверены?", "Предупреждение",
-            //                       MessageBoxButtons.YesNo,
-            //                       MessageBoxIcon.Exclamation,
-            //                       MessageBoxDefaultButton.Button2);
-            //                    if (res == DialogResult.Yes)
-            //                    {
-            //                        Sections.Delete(p);
-            //                        foreach (long gr in groups_pos)
-            //                            Groups.Delete(gr);
-            //                    }
-            //                }
-            //            }
-            //        }
-            //        UpDate();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    DialogResult res1 = MessageBox.Show(ex.Message, "Ошибка",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //}
+            textBoxName.Text = T.Имя;
+            textBoxPatronymic.Text = T.Отчество;
+            textBoxSurname.Text = T.Фамилия;
+            numericUpDown1.Value = (decimal)T.Стаж;
         }
+
+
 
         //перемещение между формами
         private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
         {
             FormGroups ifrm = new FormGroups();
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
@@ -326,53 +271,142 @@ namespace WindowsFormsApp1
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
             FormKids ifrm = new FormKids();
-            ifrm.StartPosition = FormStartPosition.CenterParent; 
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
 
+        private void FormTreners_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
+        }
+
+        //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
-        
+        private void toolStripTextBoxRol_Click(object sender, EventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
+            ifrm.Show(); // отображаем новую форму
+            this.Hide(); // скрываем текущую
+        }
+
+        private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все люди из таблицы Ученики" +
+                 $" будут удалены.\n Вы уверены?", "Предупреждение",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Exclamation,
+             MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            { Kids.DeleteKids(); }
+
+        }
+
+        private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все группы и их участники" +
+                $" будут удалены.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {Groups.DeleteGroups();}
+        }
+
+        private void toolStripTextBoxDelTrener_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все тренера, группы и их участники" +
+                $" будут удалены.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Treners.DeleteTreners();
+                T = null;
+                UpDate();
+            }
+        }
+
+        private void toolStripTextBoxDelAll_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Вся база данных Спортивной школы" +
+                $" будет удалена.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Treners.DeleteTreners();
+                T = null;
+                UpDate();
+            }
+        }
+
+        //ввод только букв и бакспайс
+        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
+        {
+            Sparavka ifrm = new Sparavka();
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
     }
 }

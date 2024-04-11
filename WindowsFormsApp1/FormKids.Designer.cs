@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxSections = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripTextBoxTreners = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxGroups = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,8 @@
             this.toolStripTextBoxG_LS = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxRol = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxDelAll = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxDelTrener = new System.Windows.Forms.ToolStripTextBox();
@@ -59,11 +61,8 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxDelKids = new System.Windows.Forms.ToolStripTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBoxID = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.textBoxSurname = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.comboBoxNameS = new System.Windows.Forms.ComboBox();
@@ -78,6 +77,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridViewKids = new System.Windows.Forms.DataGridView();
+            this.toolStripTextBoxSpravka = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -96,7 +97,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 359);
+            this.panel1.Size = new System.Drawing.Size(924, 323);
             this.panel1.TabIndex = 2;
             // 
             // menuStrip1
@@ -121,7 +122,7 @@
             this.toolStripMenuItem1.BackColor = System.Drawing.Color.Violet;
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator6,
-            this.toolStripTextBoxSections,
+            this.toolStripTextBoxTreners,
             this.toolStripSeparator1,
             this.toolStripTextBoxGroups});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
@@ -134,13 +135,13 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
             // 
-            // toolStripTextBoxSections
+            // toolStripTextBoxTreners
             // 
-            this.toolStripTextBoxSections.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.toolStripTextBoxSections.Name = "toolStripTextBoxSections";
-            this.toolStripTextBoxSections.Size = new System.Drawing.Size(100, 22);
-            this.toolStripTextBoxSections.Text = "Секции";
-            this.toolStripTextBoxSections.Click += new System.EventHandler(this.toolStripTextBoxSections_Click);
+            this.toolStripTextBoxTreners.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxTreners.Name = "toolStripTextBoxTreners";
+            this.toolStripTextBoxTreners.Size = new System.Drawing.Size(100, 22);
+            this.toolStripTextBoxTreners.Text = "Тренера";
+            this.toolStripTextBoxTreners.Click += new System.EventHandler(this.toolStripTextBoxSections_Click);
             // 
             // toolStripSeparator1
             // 
@@ -279,13 +280,17 @@
             this.toolStripMenuItem2.BackColor = System.Drawing.Color.CornflowerBlue;
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator7,
+            this.toolStripTextBoxRol,
+            this.toolStripSeparator11,
             this.toolStripTextBoxDelAll,
             this.toolStripSeparator8,
             this.toolStripTextBoxDelTrener,
             this.toolStripSeparator9,
             this.toolStripTextBoxDelGroups,
             this.toolStripSeparator10,
-            this.toolStripTextBoxDelKids});
+            this.toolStripTextBoxDelKids,
+            this.toolStripSeparator12,
+            this.toolStripTextBoxSpravka});
             this.toolStripMenuItem2.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 20);
@@ -296,6 +301,20 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(192, 6);
             // 
+            // toolStripTextBoxRol
+            // 
+            this.toolStripTextBoxRol.AutoSize = false;
+            this.toolStripTextBoxRol.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxRol.Name = "toolStripTextBoxRol";
+            this.toolStripTextBoxRol.Size = new System.Drawing.Size(135, 22);
+            this.toolStripTextBoxRol.Text = "Сменить пользователя";
+            this.toolStripTextBoxRol.Click += new System.EventHandler(this.toolStripTextBoxRol_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(192, 6);
+            // 
             // toolStripTextBoxDelAll
             // 
             this.toolStripTextBoxDelAll.AutoSize = false;
@@ -303,6 +322,7 @@
             this.toolStripTextBoxDelAll.Name = "toolStripTextBoxDelAll";
             this.toolStripTextBoxDelAll.Size = new System.Drawing.Size(120, 22);
             this.toolStripTextBoxDelAll.Text = "Удалить все данные";
+            this.toolStripTextBoxDelAll.Click += new System.EventHandler(this.toolStripTextBoxDelAll_Click);
             // 
             // toolStripSeparator8
             // 
@@ -316,6 +336,7 @@
             this.toolStripTextBoxDelTrener.Name = "toolStripTextBoxDelTrener";
             this.toolStripTextBoxDelTrener.Size = new System.Drawing.Size(135, 22);
             this.toolStripTextBoxDelTrener.Text = "Удалить всех тренеров";
+            this.toolStripTextBoxDelTrener.Click += new System.EventHandler(this.toolStripTextBoxDelTrener_Click);
             // 
             // toolStripSeparator9
             // 
@@ -329,6 +350,7 @@
             this.toolStripTextBoxDelGroups.Name = "toolStripTextBoxDelGroups";
             this.toolStripTextBoxDelGroups.Size = new System.Drawing.Size(135, 22);
             this.toolStripTextBoxDelGroups.Text = "Удалить все группы";
+            this.toolStripTextBoxDelGroups.Click += new System.EventHandler(this.toolStripTextBoxDelGroups_Click);
             // 
             // toolStripSeparator10
             // 
@@ -342,16 +364,14 @@
             this.toolStripTextBoxDelKids.Name = "toolStripTextBoxDelKids";
             this.toolStripTextBoxDelKids.Size = new System.Drawing.Size(135, 22);
             this.toolStripTextBoxDelKids.Text = "Удалить всех учеников";
+            this.toolStripTextBoxDelKids.Click += new System.EventHandler(this.toolStripTextBoxDelKids_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LemonChiffon;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.textBoxID);
             this.panel2.Controls.Add(this.buttonClear);
-            this.panel2.Controls.Add(this.buttonDelete);
             this.panel2.Controls.Add(this.buttonSave);
-            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.textBoxSurname);
             this.panel2.Controls.Add(this.textBoxName);
             this.panel2.Controls.Add(this.comboBoxNameS);
@@ -364,17 +384,8 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(498, 34);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(409, 298);
+            this.panel2.Size = new System.Drawing.Size(409, 258);
             this.panel2.TabIndex = 24;
-            // 
-            // textBoxID
-            // 
-            this.textBoxID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxID.Location = new System.Drawing.Point(103, 18);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.ReadOnly = true;
-            this.textBoxID.Size = new System.Drawing.Size(286, 20);
-            this.textBoxID.TabIndex = 37;
             // 
             // buttonClear
             // 
@@ -382,7 +393,7 @@
             this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClear.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonClear.Location = new System.Drawing.Point(148, 259);
+            this.buttonClear.Location = new System.Drawing.Point(103, 220);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(103, 27);
             this.buttonClear.TabIndex = 36;
@@ -390,27 +401,13 @@
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // buttonDelete
-            // 
-            this.buttonDelete.BackColor = System.Drawing.Color.LightCoral;
-            this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDelete.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonDelete.Location = new System.Drawing.Point(16, 259);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(97, 27);
-            this.buttonDelete.TabIndex = 34;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = false;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.MediumPurple;
             this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonSave.Location = new System.Drawing.Point(286, 259);
+            this.buttonSave.Location = new System.Drawing.Point(286, 220);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(103, 27);
             this.buttonSave.TabIndex = 35;
@@ -418,36 +415,29 @@
             this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(12, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 19);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Id ученика";
-            // 
             // textBoxSurname
             // 
             this.textBoxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSurname.Location = new System.Drawing.Point(103, 55);
+            this.textBoxSurname.Location = new System.Drawing.Point(103, 12);
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(286, 20);
             this.textBoxSurname.TabIndex = 31;
+            this.textBoxSurname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSurname_KeyPress);
             // 
             // textBoxName
             // 
             this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(103, 94);
+            this.textBoxName.Location = new System.Drawing.Point(103, 51);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(286, 20);
             this.textBoxName.TabIndex = 30;
+            this.textBoxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxName_KeyPress);
             // 
             // comboBoxNameS
             // 
+            this.comboBoxNameS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxNameS.FormattingEnabled = true;
-            this.comboBoxNameS.Location = new System.Drawing.Point(103, 173);
+            this.comboBoxNameS.Location = new System.Drawing.Point(103, 130);
             this.comboBoxNameS.Name = "comboBoxNameS";
             this.comboBoxNameS.Size = new System.Drawing.Size(286, 21);
             this.comboBoxNameS.TabIndex = 28;
@@ -457,7 +447,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 175);
+            this.label4.Location = new System.Drawing.Point(12, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 19);
             this.label4.TabIndex = 29;
@@ -467,16 +457,17 @@
             // 
             this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGroup.FormattingEnabled = true;
-            this.comboBoxGroup.Location = new System.Drawing.Point(103, 213);
+            this.comboBoxGroup.Location = new System.Drawing.Point(103, 170);
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(286, 21);
             this.comboBoxGroup.TabIndex = 27;
+            this.comboBoxGroup.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGroup_SelectionChangeCommitted);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 56);
+            this.label2.Location = new System.Drawing.Point(12, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 19);
             this.label2.TabIndex = 25;
@@ -485,16 +476,17 @@
             // textBoxPatronymic
             // 
             this.textBoxPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPatronymic.Location = new System.Drawing.Point(103, 134);
+            this.textBoxPatronymic.Location = new System.Drawing.Point(103, 91);
             this.textBoxPatronymic.Name = "textBoxPatronymic";
             this.textBoxPatronymic.Size = new System.Drawing.Size(286, 20);
             this.textBoxPatronymic.TabIndex = 13;
+            this.textBoxPatronymic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPatronymic_KeyPress);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 215);
+            this.label3.Location = new System.Drawing.Point(12, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 19);
             this.label3.TabIndex = 11;
@@ -504,7 +496,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 137);
+            this.label1.Location = new System.Drawing.Point(12, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 9;
@@ -514,7 +506,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 95);
+            this.label5.Location = new System.Drawing.Point(12, 52);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 19);
             this.label5.TabIndex = 8;
@@ -526,7 +518,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 333);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 297);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(920, 22);
             this.statusStrip1.TabIndex = 23;
@@ -558,19 +550,33 @@
             this.dataGridViewKids.Name = "dataGridViewKids";
             this.dataGridViewKids.ReadOnly = true;
             this.dataGridViewKids.RowHeadersVisible = false;
-            this.dataGridViewKids.Size = new System.Drawing.Size(465, 298);
+            this.dataGridViewKids.Size = new System.Drawing.Size(465, 258);
             this.dataGridViewKids.TabIndex = 22;
             this.dataGridViewKids.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewKids_CellMouseDown);
-            this.dataGridViewKids.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKids_RowEnter);
+            // 
+            // toolStripTextBoxSpravka
+            // 
+            this.toolStripTextBoxSpravka.AutoSize = false;
+            this.toolStripTextBoxSpravka.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxSpravka.Name = "toolStripTextBoxSpravka";
+            this.toolStripTextBoxSpravka.Size = new System.Drawing.Size(135, 22);
+            this.toolStripTextBoxSpravka.Text = "Справка";
+            this.toolStripTextBoxSpravka.Click += new System.EventHandler(this.toolStripTextBoxSpravka_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(192, 6);
             // 
             // FormKids
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 359);
+            this.ClientSize = new System.Drawing.Size(924, 323);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormKids";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ученики";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormKids_FormClosed);
             this.Load += new System.EventHandler(this.FormKids_Load);
@@ -593,7 +599,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSections;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxTreners;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGroups;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
@@ -631,13 +637,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelGroups;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelKids;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxRol;
         private System.Windows.Forms.TextBox textBoxSurname;
         private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelKids;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSpravka;
     }
 }

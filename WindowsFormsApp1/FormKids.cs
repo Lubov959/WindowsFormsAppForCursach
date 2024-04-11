@@ -9,41 +9,36 @@ namespace WindowsFormsApp1
 {
     public partial class FormKids : Form
     {
+        Kids K;
         public FormKids()
         {
             InitializeComponent();
+            if (FormAutoresations.rol == "operator")
+            {
+                toolStripTextBoxDelKids.Enabled = true;
+                toolStripTextBoxDelAll.Enabled = true;
+                toolStripTextBoxDelGroups.Enabled = true;
+                toolStripTextBoxDelTrener.Enabled = true;
+            }
             textBoxName.MaxLength = 15;
             textBoxSurname.MaxLength = 20;
             textBoxPatronymic.MaxLength = 20;
-            try
-            {
-                Groups.Sections(out List<string> sect);
-                if (sect != null ) 
-                { 
-                    comboBoxNameS.Items.Clear();
-                    foreach(string s in sect)
-                        comboBoxNameS.Items.Add(s);
-                }
-                
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
-        }
-        private void FormKids_Load(object sender, EventArgs e)
-        {
-            UpDate();//вывод файла
             Groups.Sections(out List<string> sect);
             if (sect != null)
             {
                 comboBoxNameS.Items.Clear();
-                foreach (string s in sect)
-                    comboBoxNameS.Items.Add(s);
+                comboBoxNameS.Items.Add(string.Empty);
+                if (sect != null)
+                {
+                    foreach (string s in sect)
+                        comboBoxNameS.Items.Add(s);
+                }
             }
+
+        }
+        private void FormKids_Load(object sender, EventArgs e)
+        {
+            UpDate();//вывод файла
         }
 
         // метод нажатия на кнопку "Cохранить данные в файл"
@@ -57,34 +52,42 @@ namespace WindowsFormsApp1
                     throw new Exception("Поля записи не должны быть пустыми!");
                 else
                 {
-                    if (textBoxID.Text == string.Empty)
+                    if(K==null) K = new Kids(); // новая запись
+                                            // прочтём данные, вводимые пользователем
+                    K.Имя = textBoxName.Text;
+                    K.Фамилия = textBoxSurname.Text;
+                    K.Отчество = textBoxPatronymic.Text;
+                    Groups.Vyvod( out List<Groups> groups);
+                    if (groups != null)
                     {
-                        Kids K = new Kids(); // новая запись
-                                             // прочтём данные, вводимые пользователем
-                        K.Имя = textBoxName.Text;
-                        K.Фамилия = textBoxSurname.Text;
-                        K.Отчество = textBoxPatronymic.Text;
-                        Groups.Search(comboBoxNameS.SelectedItem.ToString(), out List<Groups> groups);
-                        if (groups != null)
+                        foreach (Groups grp in groups)
                         {
-                            K.Группа = groups[comboBoxGroup.SelectedIndex].ID;
+                            FormGroups.StringTo(grp, out string s_gr);
+                            if (comboBoxGroup.Text == s_gr)
+                                K.Группа = grp.ID;
                         }
 
-                      
-                        { K.Add(); }
+                    }
+                    if(K.ID == 0)
+                    { 
+                        K.Add();
+                        K = null;
                     }
                     else
                     {
-                       
-                        DialogResult res = MessageBox.Show("Такая человек уже есть! \nИзменить данные? ", "Предупреждение",
+                        DialogResult res = MessageBox.Show("Вы уверены, что хотите " +
+                            "\nизменить данные? ", "Предупреждение",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button2);
                         if (res == DialogResult.Yes)
-                        {  Kids.Check(textBoxID.Text, out long p, out Kids k);
-                            k.Correcting(p); }
+                        {  Kids.Search(K.ID, out long p, out Kids k);
+                            K.Correcting(p);
+                            K = null;
+                        }
                     }
                     UpDate();
+                    buttonClear_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -114,21 +117,10 @@ namespace WindowsFormsApp1
                     dataGridViewKids.Columns[2].Name = "Имя";
                     dataGridViewKids.Columns[3].Name = "Отчество";
                     dataGridViewKids.Columns[4].Name = "Id группы";
-                    dataGridViewKids.Columns[0].Visible = false;
-                    //очистка списка 
-                    comboBoxNameS.Items.Clear();
-                    comboBoxGroup.Items.Clear();
+                    //dataGridViewKids.Columns[0].Visible = false;
 
-                    Groups.Sections(out List<string> sect);
-                    if (sect != null)
-                    {
-                        comboBoxNameS.Items.Clear();
-                        if (sect != null)
-                        {
-                            foreach (string s in sect)
-                                comboBoxNameS.Items.Add(s);
-                        }
-                    }
+
+                    
 
                     int k = kids.Count;
                     dataGridViewKids.RowCount = k;
@@ -139,7 +131,9 @@ namespace WindowsFormsApp1
                         dataGridViewKids.Rows[i].Cells[1].Value = kids[i].Фамилия;
                         dataGridViewKids.Rows[i].Cells[2].Value = kids[i].Имя;
                         dataGridViewKids.Rows[i].Cells[3].Value = kids[i].Отчество;
-                        dataGridViewKids.Rows[i].Cells[4].Value = kids[i].Группа;
+                        Groups.Search(kids[i].Группа, out long p, out Groups g);
+                        FormGroups.StringTo(g, out string s_gr);
+                        dataGridViewKids.Rows[i].Cells[4].Value = s_gr; 
                     }
                     //кол-во строк
                     statusStrip1.Items[1].Text = kids.Count.ToString();
@@ -156,50 +150,17 @@ namespace WindowsFormsApp1
         //очистка полей
         private void buttonClear_Click(object sender, EventArgs e)
         {
+            K = null;
             textBoxName.Text = string.Empty;
             textBoxPatronymic.Text = string.Empty;
+            comboBoxGroup.Items.Clear();
+            comboBoxGroup.Items.Add(string.Empty);
             comboBoxGroup.Text = comboBoxGroup.Items[0].ToString();
             comboBoxNameS.Text = comboBoxNameS.Items[0].ToString();
             textBoxSurname.Text = string.Empty;
             statusStrip1.Items[1].Text = "0";
         }
-        //удаление
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //проверка на пустоту полей
-                if ((textBoxName.Text == string.Empty) && (textBoxSurname.Text == string.Empty))
-                    throw new Exception("Для удаления записи необходимо заполнить все поля!");
-                else 
-                {
-                    Kids.Check(textBoxName.Text, textBoxSurname.Text, out long p);//проверка
-                    if (p < 0)//если такой записи нет, то записываем в конец
-                    {
-                        DialogResult res = MessageBox.Show("Такого человека нет", "Ошибка удаления",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        DialogResult res = MessageBox.Show($"Человек {textBoxSurname.Text} " +
-                            $"{textBoxName.Text} будет удален.\n Вы уверены?", "Предупреждение",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Exclamation,
-                            MessageBoxDefaultButton.Button2);
-                        if (res == DialogResult.Yes)
-                        { Kids.Delete(p); }
-                    }
-                    UpDate();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
-        }
+        
 
         //передвижение между формами
         private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
@@ -220,103 +181,91 @@ namespace WindowsFormsApp1
         //передвижение между формами
         private void toolStripTextBoxSections_Click(object sender, EventArgs e)
         {
-            Form ifrm = Application.OpenForms[0];
+            Form ifrm = new FormTreners();
             ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.Show(); // отображаем новую форму
             this.Hide(); // скрываем текущую
         }
 
-        //метод для автозаполнения полей при выборе фамилии
-        private void comboBoxSurname_Leave(object sender, EventArgs e)
-        {
-            //if (comboBoxSurname.Text != string.Empty)
-            //{
-            //    Kids.Check(comboBoxSurname.Text, out List<string> list);
-            //    if (list != null)
-            //    {
-            //        if (list.Count > 1)//уточнение имени
-            //        {
-            //            comboBoxName.Items.Clear();
-            //            foreach (string s in list) { comboBoxName.Items.Add(s); }
-            //        }
-            //        else if (list.Count == 1)//автозаполнение
-            //        {
-            //            comboBoxName.Text = list[0];
-            //            Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out Kids k);
-            //            textBoxPatronymic.Text = k.Отчество;
-            //            comboBoxGroup.Text = k.Группа;
-            //        }
-            //    }
-                    
-            //}
-        }
+        
 
-        //метод для автозаполнения полей при выборе имени и фамилии
-        private void comboBoxName_Leave(object sender, EventArgs e)
-        {
-            if ((textBoxSurname.Text != string.Empty) && (textBoxSurname.Text != string.Empty))
-            {
-                //Kids.Check(comboBoxName.Text, comboBoxSurname.Text, out Kids k);
-                //if (k != null)
-                //{
-                //    textBoxPatronymic.Text = k.Отчество;
-                //    comboBoxGroup.Text = k.Группа;
-                //}
-            }
-        }
+        
         //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
         private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
         {
             FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
             ifrm.ShowDialog(); // отображаем новую форму диалога
         }
 
+
+        //событие при выборе Секции из выпадающего списка
         private void comboBoxNameS_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
                 Groups.Search(comboBoxNameS.SelectedItem.ToString(), out List<Groups> groups);
                 if (groups != null)
-                { 
+                {
+                    comboBoxGroup.Items.Clear();
+                    comboBoxGroup.Text = string.Empty;
                     comboBoxGroup.Items.Add(string.Empty);
                     foreach (Groups grp in groups)
-                        comboBoxGroup.Items.Add(grp);
+                    {
+                        Kids.Search(grp.ID, out List<Kids> kid);
+                        if (K != null)
+                        {
+                            if ((grp.Max > kid.Count) || (grp.ID == K.Группа))
+                            {
+                                FormGroups.StringTo(grp, out string s_gr);
+                                comboBoxGroup.Items.Add(s_gr);
+                            }
+                        }
+                        else
+                        {
+                            if (grp.Max > kid.Count)
+                            {
+                                FormGroups.StringTo(grp, out string s_gr);
+                                comboBoxGroup.Items.Add(s_gr);
+                            }
+                        }
+                    }
+                        
                 }
             }
             catch (Exception ex)
@@ -327,12 +276,30 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void dataGridViewKids_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void comboBoxGroup_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            //Groups.Vyvod(out List<Groups> groups);
+            //if (groups != null)
+            //{
+            //    foreach (Groups grp in groups)
+            //    {
+            //        FormGroups.StringTo(grp, out string s_gr);
+            //        if (s_gr == comboBoxGroup.SelectedItem.ToString())
+            //        {
+            //            Kids.Search(grp.ID, out List<Kids> kid);
+            //            if ((comboBoxGroup.Text != s_gr) && (grp.Max == kid.Count))
+            //            {
+            //                MessageBox.Show($"В группе {s_gr} нет свободных мест!", "Ошибка",
+            //                MessageBoxButtons.OK,
+            //                MessageBoxIcon.Error);
+            //            }
+            //        }
+            //    }
 
+            //}
         }
 
-        string[] currentRow;
+
         private void dataGridViewKids_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right) 
@@ -345,11 +312,21 @@ namespace WindowsFormsApp1
                 contextMenuStrip.Items.AddRange(new[] { upDateMenuItem, deleteMenuItem });
                 //привязка к объекту
                 dataGridViewKids.ContextMenuStrip = contextMenuStrip;
-                int id = e.RowIndex;
-                currentRow = new string[dataGridViewKids.ColumnCount];
-                for (int i = 0; i < dataGridViewKids.ColumnCount; i++)
+                K = new Kids();
+                K.ID = (long)dataGridViewKids.Rows[e.RowIndex].Cells[0].Value;
+                K.Фамилия = (string)dataGridViewKids.Rows[e.RowIndex].Cells[1].Value;
+                K.Имя = (string)dataGridViewKids.Rows[e.RowIndex].Cells[2].Value;
+                K.Отчество = (string)dataGridViewKids.Rows[e.RowIndex].Cells[3].Value;
+                Groups.Vyvod(out List<Groups> groups);
+                if (groups != null)
                 {
-                    currentRow[i]= dataGridViewKids.Rows[e.RowIndex].Cells[i].Value.ToString();
+                    foreach (Groups grp in groups)
+                    {
+                        FormGroups.StringTo(grp, out string s_gr);
+                        if ( dataGridViewKids.Rows[e.RowIndex].Cells[4].Value.ToString()== s_gr)
+                            K.Группа = grp.ID;
+                    }
+
                 }
                 // устанавливаем обработчики событий для меню
                 upDateMenuItem.Click += upDateMenuItem_Click;
@@ -358,27 +335,140 @@ namespace WindowsFormsApp1
             }
         }
 
-        //
+        //Удаление
         void deleteMenuItem_Click(object sender, EventArgs e)
         {
-            Kids.Check(currentRow[0].ToString(), out long pos);
-            if (pos>0)
-                Kids.Delete(pos);
+            DialogResult res = MessageBox.Show($"Человек {K.Фамилия} " +
+            $"{K.Имя} будет удален.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Kids.Search(K.ID, out long pos, out Kids k);
+                if (pos >= 0)
+                { Kids.Delete(pos); K = null; }
+                UpDate();
+            }
             
         }
-        // 
+        // Корректировка записи
         void upDateMenuItem_Click(object sender, EventArgs e)
         {
-            textBoxID.Text = currentRow[0].ToString();
-            textBoxName.Text = currentRow[2].ToString();
-            textBoxPatronymic.Text = currentRow[3].ToString();
-            //comboBoxGroup.Text = currentRow[4].ToString();
-            //comboBoxNameS.Text = comboBoxNameS.Items[0].ToString();
-            textBoxSurname.Text = currentRow[1].ToString();
-            Groups.Search(currentRow[4].ToString(), out Groups g);
+            textBoxName.Text = K.Имя;
+            textBoxPatronymic.Text = K.Отчество;
+            textBoxSurname.Text = K.Фамилия;
+            Groups.Search(K.Группа, out long p, out Groups g);
+            FormGroups.StringTo(g, out string s_group);
             comboBoxNameS.Text = g.Секция;
-            comboBoxGroup.Text = g.ToString();
+            Groups.Search(g.Секция, out List<Groups> groups);
+            if (groups != null)
+            {
+                comboBoxGroup.Items.Clear();
+                comboBoxGroup.Text = string.Empty;
+                comboBoxGroup.Items.Add(string.Empty);
+                foreach (Groups grp in groups)
+                {
+                    Kids.Search(grp.ID, out List<Kids> kid);
+                    if ((grp.Max > kid.Count)||(grp.ID==g.ID))
+                    {
+                        FormGroups.StringTo(grp, out string s_gr);
+                        comboBoxGroup.Items.Add(s_gr);
+                    }
+                }
+            }
+            comboBoxGroup.Text = s_group;
         }
 
+        //сменить роль
+        private void toolStripTextBoxRol_Click(object sender, EventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
+            ifrm.Show(); // отображаем новую форму
+            this.Hide(); // скрываем текущую
+        }
+
+        //удаление как доп действие
+        private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все люди из таблицы Ученики" +
+                 $" будут удалены.\n Вы уверены?", "Предупреждение",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Exclamation,
+             MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Kids.DeleteKids();
+                K = null;
+                UpDate();
+            }
+           
+        }
+
+        private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все группы и их участники" +
+                $" будут удалены.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Groups.DeleteGroups();
+                UpDate();
+            }
+        }
+
+        private void toolStripTextBoxDelTrener_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Все тренера, группы и их участники" +
+                $" будут удалены.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Treners.DeleteTreners();
+                UpDate();
+            }
+        }
+
+        private void toolStripTextBoxDelAll_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show($"Вся база данных Спортивной школы" +
+                $" будет удалена.\n Вы уверены?", "Предупреждение",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Yes)
+            {
+                Treners.DeleteTreners();
+                UpDate();
+            }
+        }
+
+        //ввод только букв и бакспайс
+        private void textBoxSurname_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void textBoxPatronymic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void toolStripTextBoxSpravka_Click(object sender, EventArgs e)
+        {
+            Sparavka ifrm = new Sparavka();
+            ifrm.StartPosition = FormStartPosition.CenterScreen;
+            ifrm.ShowDialog(); // отображаем новую форму диалога
+        }
     }
 }

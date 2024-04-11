@@ -16,7 +16,8 @@ namespace WindowsFormsApp1
         public FormAutoresations()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterParent;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
@@ -29,9 +30,8 @@ namespace WindowsFormsApp1
                     if (textBoxPassword.Text == "123")
                     {
                         rol = "admin";
-                        s = $"Добро пожаловать, {rol}";
-                        FormGroups ifrm = new FormGroups();
-                        ifrm.StartPosition = FormStartPosition.CenterParent;
+                        Form ifrm = new Home();
+                        ifrm.StartPosition = FormStartPosition.CenterScreen;
                         ifrm.Show(); // отображаем новую форму
                         this.Hide(); // скрываем текущую
                     }
@@ -43,20 +43,29 @@ namespace WindowsFormsApp1
                     if (textBoxPassword.Text == "1")
                     {
                         rol = "operator";
-                        s = $"Добро пожаловать, {rol}";
-                        FormKids ifrm = new FormKids();
-                        ifrm.StartPosition = FormStartPosition.CenterParent;
+                        Form ifrm = new Home();
+                        ifrm.StartPosition = FormStartPosition.CenterScreen;
                         ifrm.Show(); // отображаем новую форму
                         this.Hide(); // скрываем текущую
                     }
                     else s = "Неверные пароль!";
                 }
                 else s = "Такого пользователя не существует!";
+
             }
             else s = "Введите логин и пароль!";
+            if(s!=string.Empty)
             MessageBox.Show(s, "Сообщение",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Asterisk);
+            textBoxLogin.Text = string.Empty;
+            textBoxPassword.Text = string.Empty;
+        }
+
+        private void FormAutoresations_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
         }
     }
 }
