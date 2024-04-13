@@ -1,16 +1,16 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class FormTreners
+    partial class FormSections
     {
         /// <summary>
-        /// Обязательная переменная конструктора.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Освободить все используемые ресурсы.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,38 +20,23 @@
             base.Dispose(disposing);
         }
 
-        #region Код, автоматически созданный конструктором форм Windows
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonClear = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxSurname = new System.Windows.Forms.TextBox();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxPatronymic = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewTreners = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxGroups = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxKids = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxSections = new System.Windows.Forms.ToolStripTextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripTextBoxTreners = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxGroups = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBoxS_Tr = new System.Windows.Forms.ToolStripTextBox();
@@ -66,7 +51,7 @@
             this.toolStripTextBoxG_Tr = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxG_LS = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBoxK_NG = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,193 +67,44 @@
             this.toolStripTextBoxDelKids = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxSpravka = new System.Windows.Forms.ToolStripTextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridViewSections = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTreners)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSections)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleGreen;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Controls.Add(this.statusStrip1);
-            this.panel1.Controls.Add(this.dataGridViewTreners);
+            this.panel1.Controls.Add(this.dataGridViewSections);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(921, 295);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(500, 390);
+            this.panel1.TabIndex = 1;
             // 
-            // panel3
+            // menuStrip1
             // 
-            this.panel3.BackColor = System.Drawing.Color.LemonChiffon;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.buttonClear);
-            this.panel3.Controls.Add(this.buttonSave);
-            this.panel3.Controls.Add(this.textBoxSurname);
-            this.panel3.Controls.Add(this.textBoxName);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.textBoxPatronymic);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.numericUpDown1);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(494, 34);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(411, 224);
-            this.panel3.TabIndex = 25;
-            // 
-            // buttonClear
-            // 
-            this.buttonClear.BackColor = System.Drawing.Color.Silver;
-            this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClear.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonClear.Location = new System.Drawing.Point(103, 183);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(103, 27);
-            this.buttonClear.TabIndex = 54;
-            this.buttonClear.Text = "Очистить";
-            this.buttonClear.UseVisualStyleBackColor = false;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.Color.MediumPurple;
-            this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
-            this.buttonSave.Location = new System.Drawing.Point(286, 183);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(103, 27);
-            this.buttonSave.TabIndex = 53;
-            this.buttonSave.Text = "Записать";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // textBoxSurname
-            // 
-            this.textBoxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSurname.Location = new System.Drawing.Point(103, 19);
-            this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(286, 20);
-            this.textBoxSurname.TabIndex = 48;
-            this.textBoxSurname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSurname_KeyPress);
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(103, 58);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(286, 20);
-            this.textBoxName.TabIndex = 47;
-            this.textBoxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxName_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 19);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Фамилия";
-            // 
-            // textBoxPatronymic
-            // 
-            this.textBoxPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPatronymic.Location = new System.Drawing.Point(103, 98);
-            this.textBoxPatronymic.Name = "textBoxPatronymic";
-            this.textBoxPatronymic.Size = new System.Drawing.Size(286, 20);
-            this.textBoxPatronymic.TabIndex = 45;
-            this.textBoxPatronymic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPatronymic_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 19);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "Отчество";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 19);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "Имя";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(103, 136);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(158, 20);
-            this.numericUpDown1.TabIndex = 42;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift Light Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 19);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Стаж (года)";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.PaleGreen;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 269);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(917, 22);
-            this.statusStrip1.TabIndex = 23;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(112, 17);
-            this.toolStripStatusLabel1.Text = "Количество строк:";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(13, 17);
-            this.toolStripStatusLabel2.Text = "0";
-            // 
-            // dataGridViewTreners
-            // 
-            this.dataGridViewTreners.AllowUserToAddRows = false;
-            this.dataGridViewTreners.AllowUserToDeleteRows = false;
-            this.dataGridViewTreners.AllowUserToResizeRows = false;
-            this.dataGridViewTreners.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewTreners.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTreners.Location = new System.Drawing.Point(16, 34);
-            this.dataGridViewTreners.MaximumSize = new System.Drawing.Size(380, 300);
-            this.dataGridViewTreners.MinimumSize = new System.Drawing.Size(465, 200);
-            this.dataGridViewTreners.MultiSelect = false;
-            this.dataGridViewTreners.Name = "dataGridViewTreners";
-            this.dataGridViewTreners.ReadOnly = true;
-            this.dataGridViewTreners.RowHeadersVisible = false;
-            this.dataGridViewTreners.Size = new System.Drawing.Size(465, 224);
-            this.dataGridViewTreners.TabIndex = 22;
-            this.dataGridViewTreners.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTreners_CellMouseDown);
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.menuStrip1.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(16, 40);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem5});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip1.Size = new System.Drawing.Size(496, 24);
+            this.menuStrip1.TabIndex = 26;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
             // 
@@ -276,11 +112,11 @@
             this.toolStripMenuItem1.BackColor = System.Drawing.Color.Violet;
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator6,
-            this.toolStripTextBoxGroups,
-            this.toolStripSeparator1,
             this.toolStripTextBoxKids,
             this.toolStripSeparator14,
-            this.toolStripTextBoxSections});
+            this.toolStripTextBoxTreners,
+            this.toolStripSeparator1,
+            this.toolStripTextBoxGroups});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(162, 20);
@@ -290,19 +126,6 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
-            // 
-            // toolStripTextBoxGroups
-            // 
-            this.toolStripTextBoxGroups.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.toolStripTextBoxGroups.Name = "toolStripTextBoxGroups";
-            this.toolStripTextBoxGroups.Size = new System.Drawing.Size(100, 22);
-            this.toolStripTextBoxGroups.Text = "Группы";
-            this.toolStripTextBoxGroups.Click += new System.EventHandler(this.toolStripTextBoxGroups_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
             // 
             // toolStripTextBoxKids
             // 
@@ -317,29 +140,26 @@
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(157, 6);
             // 
-            // toolStripTextBoxSections
+            // toolStripTextBoxTreners
             // 
-            this.toolStripTextBoxSections.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.toolStripTextBoxSections.Name = "toolStripTextBoxSections";
-            this.toolStripTextBoxSections.Size = new System.Drawing.Size(100, 22);
-            this.toolStripTextBoxSections.Text = "Секции";
-            this.toolStripTextBoxSections.Click += new System.EventHandler(this.toolStripTextBoxSections_Click);
+            this.toolStripTextBoxTreners.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxTreners.Name = "toolStripTextBoxTreners";
+            this.toolStripTextBoxTreners.Size = new System.Drawing.Size(100, 22);
+            this.toolStripTextBoxTreners.Text = "Тренера";
+            this.toolStripTextBoxTreners.Click += new System.EventHandler(this.toolStripTextBoxTreners_Click);
             // 
-            // menuStrip1
+            // toolStripSeparator1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.menuStrip1.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(16, 40);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem5});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(921, 24);
-            this.menuStrip1.TabIndex = 21;
-            this.menuStrip1.Text = "menuStrip1";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
+            // 
+            // toolStripTextBoxGroups
+            // 
+            this.toolStripTextBoxGroups.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripTextBoxGroups.Name = "toolStripTextBoxGroups";
+            this.toolStripTextBoxGroups.Size = new System.Drawing.Size(100, 22);
+            this.toolStripTextBoxGroups.Text = "Группы";
+            this.toolStripTextBoxGroups.Click += new System.EventHandler(this.toolStripTextBoxGroups_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -349,7 +169,7 @@
             this.toolStripMenuItem4,
             this.toolStripSeparator9,
             this.toolStripMenuItem2,
-            this.toolStripSeparator17,
+            this.toolStripSeparator15,
             this.toolStripMenuItem6});
             this.toolStripMenuItem3.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -460,10 +280,10 @@
             this.toolStripTextBoxG_LS.Text = "по уровню в секции";
             this.toolStripTextBoxG_LS.Click += new System.EventHandler(this.toolStripTextBoxG_LS_Click);
             // 
-            // toolStripSeparator17
+            // toolStripSeparator15
             // 
-            this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(143, 6);
             // 
             // toolStripMenuItem6
             // 
@@ -589,49 +409,87 @@
             this.toolStripTextBoxSpravka.Text = "Справка";
             this.toolStripTextBoxSpravka.Click += new System.EventHandler(this.toolStripTextBoxSpravka_Click);
             // 
-            // FormTreners
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.PaleGreen;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 364);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(496, 22);
+            this.statusStrip1.TabIndex = 23;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Bahnschrift", 9F);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(112, 17);
+            this.toolStripStatusLabel1.Text = "Количество строк:";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(13, 17);
+            this.toolStripStatusLabel2.Text = "0";
+            // 
+            // dataGridViewSections
+            // 
+            this.dataGridViewSections.AllowUserToAddRows = false;
+            this.dataGridViewSections.AllowUserToDeleteRows = false;
+            this.dataGridViewSections.AllowUserToResizeRows = false;
+            this.dataGridViewSections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewSections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSections.Location = new System.Drawing.Point(16, 49);
+            this.dataGridViewSections.MaximumSize = new System.Drawing.Size(380, 300);
+            this.dataGridViewSections.MinimumSize = new System.Drawing.Size(465, 200);
+            this.dataGridViewSections.MultiSelect = false;
+            this.dataGridViewSections.Name = "dataGridViewSections";
+            this.dataGridViewSections.ReadOnly = true;
+            this.dataGridViewSections.RowHeadersVisible = false;
+            this.dataGridViewSections.Size = new System.Drawing.Size(465, 300);
+            this.dataGridViewSections.TabIndex = 22;
+            // 
+            // FormSections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 295);
-            this.Controls.Add(this.menuStrip1);
+            this.ClientSize = new System.Drawing.Size(500, 390);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormTreners";
+            this.Name = "FormSections";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Тренера";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormTreners_FormClosed);
-            this.Load += new System.EventHandler(this.FormSections_Load);
+            this.Text = "Секции";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSections_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTreners)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSections)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridViewTreners;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGroups;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxKids;
+        private System.Windows.Forms.DataGridView dataGridViewSections;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxKids;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxTreners;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGroups;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxS_Tr;
@@ -646,17 +504,9 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxG_Tr;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxG_LS;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBoxSurname;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxPatronymic;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxK_NG;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxRol;
@@ -670,11 +520,5 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxDelKids;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSpravka;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSections;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxK_NG;
     }
 }
-

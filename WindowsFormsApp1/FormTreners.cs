@@ -14,10 +14,10 @@ namespace WindowsFormsApp1
             if (FormAutoresations.rol == "operator")
             {
                 this.Width = 511;
-                toolStripTextBoxDelKids.Enabled = true;
-                toolStripTextBoxDelAll.Enabled = true;
-                toolStripTextBoxDelGroups.Enabled = true;
-                toolStripTextBoxDelTrener.Enabled = true;
+                toolStripTextBoxDelKids.Enabled = false;
+                toolStripTextBoxDelAll.Enabled = false;
+                toolStripTextBoxDelGroups.Enabled = false;
+                toolStripTextBoxDelTrener.Enabled = false;
             }
             else
             {
@@ -101,7 +101,7 @@ namespace WindowsFormsApp1
                     dataGridViewTreners.Columns[2].Name = "Имя";
                     dataGridViewTreners.Columns[3].Name = "Отчество";
                     dataGridViewTreners.Columns[4].Name = "Стаж (года)";
-                    //dataGridViewTreners.Columns[0].Visible = false;
+                    dataGridViewTreners.Columns[0].Visible = false;
 
 
 
@@ -258,77 +258,60 @@ namespace WindowsFormsApp1
 
 
         //перемещение между формами
-        private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
-        {
-            FormGroups ifrm = new FormGroups();
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
-            this.Hide(); // скрываем текущую
-        }
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
-            FormKids ifrm = new FormKids();
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
+            Home.Kids();
+            this.Hide(); // скрываем текущую
+        }
+        private void toolStripTextBoxGroups_Click(object sender, EventArgs e)
+        {
+            Home.Groups();
+            this.Hide(); // скрываем текущую
+        }
+        private void toolStripTextBoxSections_Click(object sender, EventArgs e)
+        {
+            Home.Sections();
             this.Hide(); // скрываем текущую
         }
 
         //закрытие формы
         private void FormTreners_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();
+            Home.Close();
         }
 
         //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
-        {
-            FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
-        }
-
+        { Home.Search("Поиск секции по фамилии тренера"); }
         private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы по фамилии тренера");
         }
-
         private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск секции по фамилии занимающегося");
         }
-
         private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы по названию секции");
         }
-
         private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы в секции по уровню подготовки");
         }
-
         private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск секции по дням занятий");
+        }
+        private void toolStripTextBoxK_NG_Click(object sender, EventArgs e)
+        {
+            Home.Search("Поиск учеников в определенной группе");
         }
 
         //доп действия
         private void toolStripTextBoxRol_Click(object sender, EventArgs e)
         {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
+            Home.Rol();
             this.Hide(); // скрываем текущую
         }
         private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
@@ -384,7 +367,7 @@ namespace WindowsFormsApp1
         {
             Sparavka ifrm = new Sparavka();
             ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            ifrm.Show(); // отображаем новую форму
         }
 
         //ввод только букв и бакспайс
@@ -400,7 +383,5 @@ namespace WindowsFormsApp1
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
-
-        
     }
 }

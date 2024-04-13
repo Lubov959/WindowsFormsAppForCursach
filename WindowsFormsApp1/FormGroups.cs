@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -32,10 +33,10 @@ namespace WindowsFormsApp1
             if (FormAutoresations.rol == "operator")
             {
                 this.Width = 581;
-                toolStripTextBoxDelKids.Enabled = true;
-                toolStripTextBoxDelAll.Enabled = true;
-                toolStripTextBoxDelGroups.Enabled = true;
-                toolStripTextBoxDelTrener.Enabled = true;
+                toolStripTextBoxDelKids.Enabled = false;
+                toolStripTextBoxDelAll.Enabled = false;
+                toolStripTextBoxDelGroups.Enabled = false;
+                toolStripTextBoxDelTrener.Enabled = false;
             }
             else
             {
@@ -77,9 +78,9 @@ namespace WindowsFormsApp1
                 //проверка на пустоту полей
                 if ((comboBoxPol.Text == string.Empty) || (comboBoxLevel.Text == string.Empty)
                     || (comboBoxSection.Text == string.Empty) || (comboBoxYears.Text == string.Empty)
-                     || (comboBoxTrener.Text == string.Empty) || (numericUpDownMax.Value == 0)||(
-                     (!checkBox1.Checked)&&(!checkBox2.Checked)&&(!checkBox3.Checked)&&(!checkBox4.Checked)
-                     &&(!checkBox5.Checked)&&(!checkBox6.Checked)&&(!checkBox7.Checked)))
+                     || (comboBoxTrener.Text == string.Empty) || (numericUpDownMax.Value == 0) || (
+                     (!checkBox1.Checked) && (!checkBox2.Checked) && (!checkBox3.Checked) && (!checkBox4.Checked)
+                     && (!checkBox5.Checked) && (!checkBox6.Checked) && (!checkBox7.Checked)))
                     throw new Exception("Поля записи не должны быть пустыми!");
                 else
                 {
@@ -113,7 +114,11 @@ namespace WindowsFormsApp1
                     d[5] = checkBox6.Checked;
                     d[6] = checkBox7.Checked;
                     G.Дни = d;
-                    G.Тренер = T[comboBoxTrener.SelectedIndex - 1].ID;
+                    foreach (Treners t in T)
+                    {
+                        if (comboBoxTrener.Text == t.Фамилия)
+                        { G.Тренер = t.ID; break; }
+                    }
 
                     if (G.ID == 0)
                     {
@@ -168,10 +173,10 @@ namespace WindowsFormsApp1
                     dataGridViewGroups.Columns[3].Name = "Дни занятий";
                     dataGridViewGroups.Columns[4].Name = "Возраст";
                     dataGridViewGroups.Columns[5].Name = "Пол";
-                    dataGridViewGroups.Columns[6].Name = "id тренера";
+                    dataGridViewGroups.Columns[6].Name = "Тренер";
                     dataGridViewGroups.Columns[7].Name = "Стоимость";
                     dataGridViewGroups.Columns[8].Name = "Макс_участников";
-                    dataGridViewGroups.Columns[9].Name = "ID";
+                    dataGridViewGroups.Columns[9].Name = "ID гр";
                     dataGridViewGroups.Columns[0].Visible = false;
                     dataGridViewGroups.Columns[9].Visible = false;
 
@@ -240,74 +245,58 @@ namespace WindowsFormsApp1
             comboBoxYears.Text = comboBoxYears.Items[0].ToString();
             numericUpDownMax.Value = numericUpDownMax.Minimum;
             numericUpDownPrice.Value = numericUpDownPrice.Minimum;
-            statusStrip1.Items[1].Text = "0";
         }
 
         //метод при нажатии на кнопку Секции в меню Перейти к ..
         private void toolStripTextBoxTreners_Click(object sender, EventArgs e)
         {
-            Form ifrm = new FormTreners();
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
+            Home.Treners();
             this.Hide(); // скрываем текущую
         }
         private void toolStripTextBoxKids_Click(object sender, EventArgs e)
         {
-            FormKids ifrm = new FormKids();
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
+            Home.Kids();
             this.Hide(); // скрываем текущую
         }
+        private void toolStripTextBoxSections_Click(object sender, EventArgs e)
+        {
+            Home.Sections();
+            this.Hide(); // скрываем текущую
+        }
+
         //метод закрытия формы
         private void FormGroups_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();//закрытие главной формы и всего приложения
+            Home.Close();
         }
-        
+
         //поиск
         private void toolStripTextBoxS_Tr_Click(object sender, EventArgs e)
-        {
-            FormSearch ifrm = new FormSearch("Поиск секции по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
-        }
-
+        { Home.Search("Поиск секции по фамилии тренера"); }
         private void toolStripTextBoxG_Tr_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы по фамилии тренера");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы по фамилии тренера");
         }
-
         private void toolStripTextBoxS_SurnKid_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск секции по фамилии занимающегося");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск секции по фамилии занимающегося");
         }
-
         private void toolStripTextBoxG_NS_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы по названию секции");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы по названию секции");
         }
-
         private void toolStripTextBoxG_LS_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск группы в секции по уровню подготовки");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск группы в секции по уровню подготовки");
         }
-
         private void toolStripTextBoxS_Day_Click(object sender, EventArgs e)
         {
-            FormSearch ifrm = new FormSearch("Поиск секции по дням занятий");
-            ifrm.StartPosition = FormStartPosition.CenterParent;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            Home.Search("Поиск секции по дням занятий");
         }
-
+        private void toolStripTextBoxK_NG_Click(object sender, EventArgs e)
+        {
+            Home.Search("Поиск учеников в определенной группе");
+        }
 
         //контекстное меню
         private void dataGridViewGroups_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -443,16 +432,14 @@ namespace WindowsFormsApp1
             numericUpDownPrice.Value = (decimal)G.Стоимость;
             numericUpDownMax.Value = (decimal)G.Max;
             Kids.Search(G.ID, out List<Kids> kids);
-            if (kids != null )
-            numericUpDownMax.Minimum = kids.Count;
+            if (kids != null)
+                numericUpDownMax.Minimum = kids.Count;
         }
 
         //доп действия
         private void toolStripTextBoxRol_Click(object sender, EventArgs e)
         {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.Show(); // отображаем новую форму
+            Home.Rol();
             this.Hide(); // скрываем текущую
         }
         private void toolStripTextBoxDelKids_Click(object sender, EventArgs e)
@@ -463,7 +450,7 @@ namespace WindowsFormsApp1
              MessageBoxIcon.Exclamation,
              MessageBoxDefaultButton.Button2);
             if (res == DialogResult.Yes)
-            {Kids.DeleteKids();}
+            { Kids.DeleteKids(); }
 
         }
         private void toolStripTextBoxDelGroups_Click(object sender, EventArgs e)
@@ -510,7 +497,7 @@ namespace WindowsFormsApp1
         {
             Sparavka ifrm = new Sparavka();
             ifrm.StartPosition = FormStartPosition.CenterScreen;
-            ifrm.ShowDialog(); // отображаем новую форму диалога
+            ifrm.Show(); // отображаем новую форму
         }
 
         //ввод только букв и бакспайс
@@ -519,6 +506,22 @@ namespace WindowsFormsApp1
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
 
-        
+        //проверка на существование тренера
+        private void comboBoxTrener_Leave(object sender, EventArgs e)
+        {
+            if (comboBoxTrener.Text != string.Empty)
+            {
+                byte k = 0;
+                foreach (Treners t in T)
+                {
+                    if (comboBoxTrener.Text == t.Фамилия)
+                    { k++; break; }
+                }
+                if (k == 0)
+                    MessageBox.Show("Такого тренера не существует", "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }
