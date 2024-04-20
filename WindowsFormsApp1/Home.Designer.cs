@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonS = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonK = new System.Windows.Forms.Button();
             this.buttonT = new System.Windows.Forms.Button();
@@ -42,7 +41,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleGreen;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.buttonS);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.buttonK);
             this.panel1.Controls.Add(this.buttonT);
@@ -53,20 +51,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(464, 222);
             this.panel1.TabIndex = 3;
-            // 
-            // buttonS
-            // 
-            this.buttonS.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.buttonS.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonS.Font = new System.Drawing.Font("Bahnschrift", 10F);
-            this.buttonS.Location = new System.Drawing.Point(250, 148);
-            this.buttonS.Name = "buttonS";
-            this.buttonS.Size = new System.Drawing.Size(93, 46);
-            this.buttonS.TabIndex = 28;
-            this.buttonS.Text = "Секции";
-            this.buttonS.UseVisualStyleBackColor = false;
-            this.buttonS.Click += new System.EventHandler(this.buttonS_Click);
             // 
             // label2
             // 
@@ -84,7 +68,7 @@
             this.buttonK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonK.Font = new System.Drawing.Font("Bahnschrift", 10F);
-            this.buttonK.Location = new System.Drawing.Point(111, 148);
+            this.buttonK.Location = new System.Drawing.Point(181, 149);
             this.buttonK.Name = "buttonK";
             this.buttonK.Size = new System.Drawing.Size(93, 46);
             this.buttonK.TabIndex = 26;
@@ -157,6 +141,5 @@
         private System.Windows.Forms.Button buttonK;
         private System.Windows.Forms.Button buttonT;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonS;
     }
 }

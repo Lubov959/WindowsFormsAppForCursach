@@ -24,73 +24,90 @@ namespace WindowsFormsApp1
             }
             else
             {
-                if ((s.Equals("Поиск секции по фамилии тренера"))
-                    || (s.Equals("Поиск группы по фамилии тренера")))
+                try
                 {
-                    groupBoxSurname.Visible = true;
-                    groupBoxSurname.Text = s;
-                    comboBoxSearch.Items.Add(string.Empty);
-                    comboBoxSearch.MaxLength = 20;
-                    Treners.Vyvod(out List<Treners> T);
-                    foreach (Treners trener in T)
-                        comboBoxSearch.Items.Add(trener.ToString());
-                }
-                else if (s.Equals("Поиск секции по фамилии занимающегося"))
-                {
-                    groupBoxSurname.Visible = true;
-                    groupBoxSurname.Text = s;
-                    comboBoxSearch.Items.Add(string.Empty);
-                    comboBoxSearch.MaxLength = 20;
-                    Kids.Vyvod(out List<Kids> kids);
-                    foreach (Kids kid in kids)
-                        comboBoxSearch.Items.Add(kid.Фамилия);
-                }
-                else if (s.Equals("Поиск группы по названию секции"))
-                {
-                    groupBoxSName.Visible = true;
-                    groupBoxSName.Text = s;
-                    comboBoxSName.MaxLength = 15;
-                    Groups.Sections(out List<string> sections);
-                    if (sections != null)
+                    if ((s.Equals("Поиск секции по фамилии тренера"))
+                        || (s.Equals("Поиск группы по фамилии тренера")))
                     {
+                        groupBoxSurname.Visible = true;
+                        groupBoxSurname.Text = s;
+                        comboBoxSearch.Items.Add(string.Empty);
+                        comboBoxSearch.MaxLength = 20;
+                        Treners.Vyvod(out List<Treners> T);
+                        if ((T != null) && (T.Count != 0))
+                        {
+                            foreach (Treners trener in T)
+                                comboBoxSearch.Items.Add(trener.ToString());
+                        }
+                    }
+                    else if (s.Equals("Поиск секции по фамилии занимающегося"))
+                    {
+                        groupBoxSurname.Visible = true;
+                        groupBoxSurname.Text = s;
+                        comboBoxSearch.Items.Add(string.Empty);
+                        comboBoxSearch.MaxLength = 20;
+                        Kids.Vyvod(out List<Kids> kids);
+                        if ((kids != null) && (kids.Count != 0))
+                        {
+                            foreach (Kids kid in kids)
+                                comboBoxSearch.Items.Add(kid.Фамилия);
+                        }
+
+                    }
+                    else if (s.Equals("Поиск группы по названию секции"))
+                    {
+                        groupBoxSName.Visible = true;
+                        groupBoxSName.Text = s;
+                        comboBoxSName.MaxLength = 15;
+                        Groups.Sections(out List<string> sections);
                         comboBoxSName.Items.Add(string.Empty);
-                        for (int i = 0; i < sections.Count; i++)
-                            comboBoxSName.Items.Add(sections[i]);
+                        if (sections != null)
+                        {
+                            for (int i = 0; i < sections.Count; i++)
+                                comboBoxSName.Items.Add(sections[i]);
+                        }
                     }
-                }
-                else if (s.Equals("Поиск группы в секции по уровню подготовки"))
-                {
-                    groupBoxSL.Visible = true;
-                    groupBoxSL.Text = s;
-                    Groups.Sections(out List<string> sections);
-                    if (sections != null)
+                    else if (s.Equals("Поиск группы в секции по уровню подготовки"))
                     {
+                        groupBoxSL.Visible = true;
+                        groupBoxSL.Text = s;
+                        Groups.Sections(out List<string> sections);
                         comboBoxSection.Items.Add(string.Empty);
-                        for (int i = 0; i < sections.Count; i++)
-                            comboBoxSection.Items.Add(sections[i]);
+                        if (sections != null)
+                        {
+
+                            for (int i = 0; i < sections.Count; i++)
+                                comboBoxSection.Items.Add(sections[i]);
+                        }
+                        comboBoxLevel.Items.Add(string.Empty);
+                        comboBoxLevel.Items.AddRange(new object[] { (lev)0, (lev)1, (lev)2, (lev)3, (lev)4 });
                     }
-                    comboBoxLevel.Items.Add(string.Empty);
-                    comboBoxLevel.Items.AddRange(new object[] { (lev)0, (lev)1, (lev)2, (lev)3, (lev)4 });
-                }
-                else if (s.Equals("Поиск секции по дням занятий"))
-                {
-                    groupBoxDays.Visible = true;
-                }
-                else if (s.Equals("Поиск учеников в определенной группе"))
-                {
-                    groupBoxK_NG.Visible = true;
-                    groupBoxK_NG.Text = s;
-                    Groups.Sections(out List<string> sect);
-                    if (sect != null)
+                    else if (s.Equals("Поиск секции по дням занятий"))
                     {
+                        groupBoxDays.Visible = true;
+                    }
+                    else if (s.Equals("Поиск учеников в определенной группе"))
+                    {
+                        groupBoxK_NG.Visible = true;
+                        groupBoxK_NG.Text = s;
+                        Groups.Sections(out List<string> sect);
                         comboBoxNS.Items.Clear();
                         comboBoxNS.Items.Add(string.Empty);
                         if (sect != null)
                         {
-                            foreach (string s1 in sect)
-                                comboBoxNS.Items.Add(s1);
+                            if (sect != null)
+                            {
+                                foreach (string s1 in sect)
+                                    comboBoxNS.Items.Add(s1);
+                            }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                 }
             }
         }
@@ -262,8 +279,8 @@ namespace WindowsFormsApp1
                 comboBoxSName.Text = comboBoxSName.Items[0].ToString();
             else if (groupBoxK_NG.Visible)
             {
-                comboBoxSection.Text = comboBoxNS.Items[0].ToString();
-                comboBoxLevel.Text = comboBoxNG.Items[0].ToString();
+                comboBoxNS.Text = comboBoxNS.Items[0].ToString();
+                comboBoxNG.Text = comboBoxNG.Items[0].ToString();
             }
             else
                 comboBoxSearch.Text = comboBoxSearch.Items[0].ToString();
@@ -312,18 +329,23 @@ namespace WindowsFormsApp1
                 {
                     Groups.Search(comboBoxSName.Text, out List<Groups> groups);
                     UpDate(groups);
+
                 }
                 else if ((groupBoxK_NG.Visible) && (comboBoxNS.Text != string.Empty)
                     && (comboBoxNG.Text != string.Empty))
                 {
                     Groups.Search(comboBoxNS.Text, out List<Groups> groups);
-                    foreach (Groups grp in groups)
+                    if ((groups != null) && (groups.Count != 0))
                     {
-                        StringTo(grp, out string s_gr);
-                        if (s_gr.Equals(comboBoxNG.Text))
+
+                        foreach (Groups grp in groups)
                         {
-                            Kids.Search(grp.ID, out List<Kids> kid);
-                            UpDate(kid);
+                            StringTo(grp, out string s_gr);
+                            if (s_gr.Equals(comboBoxNG.Text))
+                            {
+                                Kids.Search(grp.ID, out List<Kids> kid);
+                                UpDate(kid);
+                            }
                         }
                     }
                 }
@@ -363,11 +385,11 @@ namespace WindowsFormsApp1
             try
             {
                 comboBoxNG.Items.Clear();
+                comboBoxNG.Text = string.Empty;
+                comboBoxNG.Items.Add(string.Empty);
                 Groups.Search(comboBoxNS.SelectedItem.ToString(), out List<Groups> groups);
                 if (groups != null)
                 {
-                    comboBoxNG.Text = string.Empty;
-                    comboBoxNG.Items.Add(string.Empty);
                     foreach (Groups grp in groups)
                     {
                         StringTo(grp, out string s_gr);
@@ -390,11 +412,11 @@ namespace WindowsFormsApp1
                 try
                 {
                     comboBoxNG.Items.Clear();
+                    comboBoxNG.Text = string.Empty;
+                    comboBoxNG.Items.Add(string.Empty);
                     Groups.Search(comboBoxNS.Text, out List<Groups> groups);
                     if (groups != null)
                     {
-                        comboBoxNG.Text = string.Empty;
-                        comboBoxNG.Items.Add(string.Empty);
                         foreach (Groups grp in groups)
                         {
                             StringTo(grp, out string s_gr);

@@ -35,10 +35,10 @@
             this.toolStripTextBoxKids = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxTreners = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxSections = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBoxSAll = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxS_Tr = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxS_Day = new System.Windows.Forms.ToolStripTextBox();
@@ -143,9 +143,7 @@
             this.toolStripSeparator6,
             this.toolStripTextBoxKids,
             this.toolStripSeparator14,
-            this.toolStripTextBoxTreners,
-            this.toolStripSeparator1,
-            this.toolStripTextBoxSections});
+            this.toolStripTextBoxTreners});
             this.toolStripMenuItem1.Font = new System.Drawing.Font("Bahnschrift", 9.5F);
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(162, 20);
@@ -154,7 +152,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(157, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripTextBoxKids
             // 
@@ -167,7 +165,7 @@
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(157, 6);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripTextBoxTreners
             // 
@@ -176,19 +174,6 @@
             this.toolStripTextBoxTreners.Size = new System.Drawing.Size(100, 22);
             this.toolStripTextBoxTreners.Text = "Тренера";
             this.toolStripTextBoxTreners.Click += new System.EventHandler(this.toolStripTextBoxTreners_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
-            // 
-            // toolStripTextBoxSections
-            // 
-            this.toolStripTextBoxSections.Font = new System.Drawing.Font("Bahnschrift", 9F);
-            this.toolStripTextBoxSections.Name = "toolStripTextBoxSections";
-            this.toolStripTextBoxSections.Size = new System.Drawing.Size(100, 22);
-            this.toolStripTextBoxSections.Text = "Секции";
-            this.toolStripTextBoxSections.Click += new System.EventHandler(this.toolStripTextBoxSections_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -208,6 +193,8 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBoxSAll,
+            this.toolStripSeparator16,
             this.toolStripTextBoxS_Tr,
             this.toolStripSeparator7,
             this.toolStripTextBoxS_Day,
@@ -217,6 +204,19 @@
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(146, 22);
             this.toolStripMenuItem4.Text = "Секции по...";
+            // 
+            // toolStripTextBoxSAll
+            // 
+            this.toolStripTextBoxSAll.Font = new System.Drawing.Font("Bahnschrift", 9.25F);
+            this.toolStripTextBoxSAll.Name = "toolStripTextBoxSAll";
+            this.toolStripTextBoxSAll.Size = new System.Drawing.Size(100, 22);
+            this.toolStripTextBoxSAll.Text = "все секции";
+            this.toolStripTextBoxSAll.Click += new System.EventHandler(this.toolStripTextBoxSAll_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(210, 6);
             // 
             // toolStripTextBoxS_Tr
             // 
@@ -828,7 +828,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxTreners;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxKids;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ComboBox comboBoxSection;
@@ -879,9 +878,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSpravka;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSections;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxK_NG;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
     }
 }

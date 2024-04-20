@@ -14,7 +14,8 @@ namespace WindowsFormsApp1
 
         private void Home_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Close();
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Close();
         }
 
         private void buttonG_Click(object sender, EventArgs e)
@@ -32,10 +33,10 @@ namespace WindowsFormsApp1
             Kids();
             this.Hide(); // скрываем текущую
         }
-        private void buttonS_Click(object sender, EventArgs e)
-        {
-            Sections(); this.Hide(); // скрываем текущую
-        }
+        //private void buttonS_Click(object sender, EventArgs e)
+        //{
+        //    Sections(); this.Hide(); // скрываем текущую
+        //}
 
         //методы перехода к другой таблице
         public static void Groups()
@@ -84,8 +85,8 @@ namespace WindowsFormsApp1
         //закрытие программы
         public new static void Close()
         {
-            Form ifrm = Application.OpenForms[0];
-            ifrm.Close();
+            if (Application.OpenForms.Cast<Form>().Any(f => f.Name == "Home"))
+                Application.OpenForms["Home"].Show();
         }
 
         //смена роли

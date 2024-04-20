@@ -38,8 +38,7 @@ namespace WindowsFormsApp1
             try
             {
                 //проверка на пустоту полей
-                if ((textBoxName.Text == string.Empty)
-                    || (textBoxSurname.Text == string.Empty) || (textBoxPatronymic.Text == string.Empty))
+                if ((textBoxName.Text == string.Empty)|| (textBoxSurname.Text == string.Empty))
                     throw new Exception("Поля записи не должны быть пустыми!");
                 else
                 {
@@ -306,6 +305,10 @@ namespace WindowsFormsApp1
         private void toolStripTextBoxK_NG_Click(object sender, EventArgs e)
         {
             Home.Search("Поиск учеников в определенной группе");
+        }
+        private void toolStripTextBoxSAll_Click(object sender, EventArgs e)
+        {
+            Home.Sections();
         }
 
         //доп действия

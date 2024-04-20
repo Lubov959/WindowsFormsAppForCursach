@@ -51,9 +51,13 @@ namespace WindowsFormsApp1
                 comboBoxYears.Items.AddRange(new object[] { (year)0, (year)1, (year)2 });
                 comboBoxTrener.Items.Add(string.Empty);
                 Treners.Vyvod(out List<Treners> T);
-                this.T = T;
-                foreach (Treners trener in T)
-                    comboBoxTrener.Items.Add(trener.ToString());
+                if ((T != null) && (T.Count != 0))
+                {
+                    this.T = T;
+                    foreach (Treners trener in T)
+                        comboBoxTrener.Items.Add(trener.ToString());
+                }
+
             }
 
         }
@@ -297,6 +301,10 @@ namespace WindowsFormsApp1
         {
             Home.Search("Поиск учеников в определенной группе");
         }
+        private void toolStripTextBoxSAll_Click(object sender, EventArgs e)
+        {
+            Home.Sections();
+        }
 
         //контекстное меню
         private void dataGridViewGroups_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -523,5 +531,7 @@ namespace WindowsFormsApp1
                             MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

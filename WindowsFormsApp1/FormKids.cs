@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             {
                 //проверка на пустоту полей
                 if ((comboBoxGroup.Text == string.Empty) || (textBoxName.Text == string.Empty)
-                    || (textBoxSurname.Text == string.Empty) || (textBoxPatronymic.Text == string.Empty))
+                    || (textBoxSurname.Text == string.Empty))
                     throw new Exception("Поля записи не должны быть пустыми!");
                 else
                 {
@@ -215,6 +215,11 @@ namespace WindowsFormsApp1
         {
             Home.Search("Поиск учеников в определенной группе");
         }
+        private void toolStripTextBoxSAll_Click(object sender, EventArgs e)
+        {
+            Home.Sections();
+        }
+
 
         //событие при выборе Секции из выпадающего списка
         private void comboBoxNameS_SelectionChangeCommitted(object sender, EventArgs e)

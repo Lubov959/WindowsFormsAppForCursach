@@ -10,13 +10,6 @@ namespace WindowsFormsApp1
         public FormSections()
         {
             InitializeComponent();
-            if (FormAutoresations.rol == "operator")
-            {
-                toolStripTextBoxDelKids.Enabled = false;
-                toolStripTextBoxDelAll.Enabled = false;
-                toolStripTextBoxDelGroups.Enabled = false;
-                toolStripTextBoxDelTrener.Enabled = false;
-            }
             UpDate();
         }
 
@@ -56,10 +49,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void FormSections_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Home.Close();
-        }
 
         //метод при нажатии на кнопку Секции в меню Перейти к ..
         private void toolStripTextBoxTreners_Click(object sender, EventArgs e)
